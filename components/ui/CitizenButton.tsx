@@ -16,9 +16,9 @@ interface CitizenButtonProps {
 }
 
 const variantStyles = {
-    primary: "bg-citoyen-green text-white hover:bg-citoyen-green-light",
-    danger: "bg-citoyen-red text-white hover:bg-red-700",
-    secondary: "bg-citoyen-blue text-white hover:bg-blue-700",
+    primary: "bg-emerald text-white hover:bg-emerald",
+    danger: "bg-rose text-white hover:bg-red-700",
+    secondary: "bg-blue text-white hover:bg-blue-700",
     ghost: "bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50",
 };
 

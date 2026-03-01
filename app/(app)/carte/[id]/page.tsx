@@ -14,7 +14,7 @@ import { cn, formatDate } from "@/lib/utils";
 
 const MONTHS = ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"];
 const SCORE_COLORS: Record<number, string> = {
-    5: "#2E7D32", 4: "#43A047", 3: "#F9A825", 2: "#EF6C00", 1: "#C62828", 0: "#757575",
+    5: "#059669", 4: "#10b981", 3: "#F9A825", 2: "#f59e0b", 1: "#f43f5e", 0: "#757575",
 };
 
 const AGREMENT_DISPLAY: Record<string, { icon: string; text: string; color: string; detail: string }> = {
@@ -102,53 +102,53 @@ export default function FicheEtablissementPage({ params }: { params: Promise<{ i
             <div className="min-h-dvh bg-white flex items-center justify-center">
                 <div className="text-center">
                     <p className="text-4xl mb-3">❓</p>
-                    <p className="text-gray-600 font-semibold">Établissement introuvable</p>
-                    <Link href="/carte" className="text-sm text-citoyen-green mt-2 block">← Retour à la carte</Link>
+                    <p className="text-text-muted font-semibold">Établissement introuvable</p>
+                    <Link href="/carte" className="text-sm text-emerald mt-2 block">← Retour à la carte</Link>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-dvh bg-gray-50 pb-24">
+        <div className="min-h-dvh bg-bg-muted pb-24">
             {/* Header */}
-            <div className="bg-white border-b border-gray-100 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
-                <Link href="/carte" className="text-gray-500"><ArrowLeft className="w-5 h-5" /></Link>
-                <h1 className="text-sm font-bold text-gray-900 truncate">🏢 {etab.nom}</h1>
+            <div className="bg-white border-b border-border px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
+                <Link href="/carte" className="text-text-muted"><ArrowLeft className="w-5 h-5" /></Link>
+                <h1 className="text-sm font-bold text-text truncate">🏢 {etab.nom}</h1>
             </div>
 
             <div className="px-4 py-4 space-y-4 max-w-lg mx-auto">
                 {/* Establishment info */}
-                <div className="bg-white rounded-2xl p-4 border border-gray-100 space-y-2">
-                    <h2 className="text-lg font-bold text-gray-900">🏢 {etab.nom}</h2>
-                    <p className="text-sm text-gray-500 flex items-center gap-1.5">
+                <div className="bg-white rounded-2xl p-4 border border-border space-y-2">
+                    <h2 className="text-lg font-bold text-text">🏢 {etab.nom}</h2>
+                    <p className="text-sm text-text-muted flex items-center gap-1.5">
                         <MapPin className="w-4 h-4 flex-shrink-0" /> {etab.adresse}, {etab.ville} ({etab.province})
                     </p>
-                    <p className="text-sm text-gray-500">📋 {etab.categorie}</p>
+                    <p className="text-sm text-text-muted">📋 {etab.categorie}</p>
                 </div>
 
                 {/* Smiley */}
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 text-center">
+                <div className="bg-white rounded-2xl p-6 border border-border text-center">
                     <SmileyDisplay score={etab.smiley} size="lg" animate />
                 </div>
 
                 {/* Details */}
-                <div className="bg-white rounded-2xl p-4 border border-gray-100 space-y-3">
+                <div className="bg-white rounded-2xl p-4 border border-border space-y-3">
                     <div className={cn("flex items-center gap-2 text-sm font-semibold", agr!.color)}>
                         <Shield className="w-4 h-4" /> {agr!.icon} Agrément : {agr!.text}
                         {etab.agrement.expiration !== "—" && ` — Expire le ${etab.agrement.expiration}`}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-text-muted">
                         <Calendar className="w-4 h-4" /> 📅 Dernière inspection : {etab.derniereInspection}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-text-muted">
                         <Phone className="w-4 h-4" /> 📞 {etab.telephone}
                     </div>
                 </div>
 
                 {/* History */}
-                <div className="bg-white rounded-2xl p-4 border border-gray-100">
-                    <h3 className="text-sm font-bold text-gray-900 mb-3">📈 Évolution du Smiley (12 mois)</h3>
+                <div className="bg-white rounded-2xl p-4 border border-border">
+                    <h3 className="text-sm font-bold text-text mb-3">📈 Évolution du Smiley (12 mois)</h3>
                     <div className="flex items-end gap-1">
                         {etab.historique.map((score, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-1">
@@ -160,24 +160,24 @@ export default function FicheEtablissementPage({ params }: { params: Promise<{ i
                                         opacity: 0.7 + (i / 12) * 0.3,
                                     }}
                                 />
-                                <span className="text-[9px] text-gray-400">{MONTHS[i]}</span>
+                                <span className="text-[9px] text-text-muted">{MONTHS[i]}</span>
                             </div>
                         ))}
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-2">
+                    <p className="text-[10px] text-text-muted mt-2">
                         {etab.historique[11] > etab.historique[0] ? "📈 Amélioration" : etab.historique[11] < etab.historique[0] ? "📉 Dégradation" : "→ Stable"} sur la période
                     </p>
                 </div>
 
                 {/* Mini map placeholder */}
-                <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-2xl border border-border overflow-hidden">
                     <div className="h-40 relative" style={{ background: "linear-gradient(135deg, #e8f5e9 0%, #a5d6a7 100%)" }}>
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                             <div className={cn("w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg", `bg-green-${etab.smiley >= 4 ? "600" : "500"}`)}>
                                 {etab.smiley}
                             </div>
                         </div>
-                        <div className="absolute bottom-1 right-1 bg-white/80 px-1.5 py-0.5 rounded text-[8px] text-gray-500">© OpenStreetMap</div>
+                        <div className="absolute bottom-1 right-1 bg-white/80 px-1.5 py-0.5 rounded text-[8px] text-text-muted">© OpenStreetMap</div>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@ export default function FicheEtablissementPage({ params }: { params: Promise<{ i
                     </Link>
                     <button
                         onClick={handleShare}
-                        className="flex items-center justify-center gap-2 w-full h-12 bg-citoyen-green/10 text-citoyen-green rounded-xl text-sm font-semibold hover:bg-citoyen-green/20 transition-colors"
+                        className="flex items-center justify-center gap-2 w-full h-12 bg-emerald/10 text-emerald rounded-xl text-sm font-semibold hover:bg-emerald/20 transition-colors"
                     >
                         <Share2 className="w-4 h-4" /> 📤 Partager
                     </button>

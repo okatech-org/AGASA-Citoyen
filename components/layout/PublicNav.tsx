@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Shield, Camera, Eye, Sun, Moon, Menu, X, ChevronRight } from "lucide-react";
+import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -12,53 +13,104 @@ const NAV_LINKS = [
     { href: "/securite-alimentaire", label: "Sécurité alimentaire" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
-    { href: "/demo", label: "Démo" },
 ];
 
 export default function PublicNav() {
     const pathname = usePathname();
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+    const scrolled = useScrolled();
+    const [mobileOpen, setMobileOpen] = useState(false);
 
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 10);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    const toggleDark = () => {
+        document.documentElement.classList.toggle("dark");
+    };
 
     return (
-        <nav
+        <header
             className={cn(
-                "sticky top-0 z-50 transition-all duration-300",
+                "sticky top-0 z-50 transition-all duration-500",
                 scrolled
-                    ? "bg-white/90 backdrop-blur-lg shadow-sm border-b border-gray-100"
-                    : "bg-white border-b border-gray-200"
+                    ? "backdrop-blur-xl bg-bg-card/75 dark:bg-bg/75 shadow-[0_4px_30px_rgba(0,0,0,0.06)]"
+                    : "bg-transparent"
             )}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+                <div className="flex items-center justify-between h-16 lg:h-[72px]">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2.5 group">
-                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#1B5E20] to-[#43A047] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                            <span className="text-white text-sm font-bold">A</span>
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-shadow">
+                            <Shield size={22} className="text-white" />
                         </div>
-                        <div className="flex flex-col">
-                            <span className="font-bold text-lg text-gray-900 leading-tight">AGASA-Citoyen</span>
-                            <span className="text-[10px] text-gray-400 leading-none hidden lg:block">Sécurité alimentaire</span>
+                        <div className="hidden sm:block">
+                            <h1 className="text-lg font-serif font-bold text-text dark:text-text leading-tight tracking-tight">AGASA-Citoyen</h1>
+                            <p className="text-[10px] text-text-muted dark:text-text-muted uppercase tracking-widest -mt-0.5">Sécurité alimentaire</p>
                         </div>
                     </Link>
 
-                    {/* Desktop Nav */}
-                    <div className="hidden lg:flex items-center gap-1">
+                    {/* Desktop nav */}
+                    <nav className="hidden lg:flex items-center gap-1">
                         {NAV_LINKS.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                                    "px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200",
                                     pathname === link.href
-                                        ? "text-[#2E7D32] bg-green-50"
-                                        : "text-gray-600 hover:text-[#2E7D32] hover:bg-green-50/50"
+                                        ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50"
+                                        : "text-text-muted dark:text-text-muted hover:text-text dark:hover:text-white hover:bg-gray-100/80 dark:hover:bg-gray-800/50"
+                                )}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Right side */}
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={toggleDark}
+                            className="w-10 h-10 rounded-xl flex items-center justify-center text-text-muted dark:text-text-muted hover:bg-bg-muted dark:hover:bg-bg-muted transition-colors"
+                            aria-label="Basculer mode sombre"
+                        >
+                            <Sun size={18} className="hidden dark:block" />
+                            <Moon size={18} className="block dark:hidden" />
+                        </button>
+                        <Link
+                            href="/demo"
+                            className="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-bg-card border border-border dark:border-border text-text dark:text-text text-sm font-semibold hover:border-emerald-300 dark:hover:border-emerald-700 transition-all"
+                        >
+                            <Eye size={16} /> Démo
+                        </Link>
+                        <Link
+                            href="/scanner"
+                            className="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-sm font-semibold shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all duration-200"
+                        >
+                            <Camera size={16} /> Scanner
+                        </Link>
+                        <button
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            className="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center text-text-muted dark:text-text-muted hover:bg-bg-muted dark:hover:bg-bg-muted transition-colors"
+                            aria-label="Menu"
+                        >
+                            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile menu */}
+            {mobileOpen && (
+                <div className="lg:hidden bg-bg-card/95 dark:bg-bg/95 backdrop-blur-xl border-t border-border dark:border-border">
+                    <div className="p-4 space-y-1">
+                        {[...NAV_LINKS, { href: "/demo", label: "Démo" }].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                className={cn(
+                                    "block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors",
+                                    pathname === link.href
+                                        ? "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400"
+                                        : "text-text-muted dark:text-text-muted hover:bg-bg-muted dark:hover:bg-bg-muted"
                                 )}
                             >
                                 {link.label}
@@ -66,55 +118,14 @@ export default function PublicNav() {
                         ))}
                         <Link
                             href="/scanner"
-                            className="ml-3 bg-gradient-to-r from-[#2E7D32] to-[#43A047] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-green-200 transition-all duration-200 hover:scale-[1.02]"
+                            onClick={() => setMobileOpen(false)}
+                            className="block w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-semibold text-sm text-center"
                         >
                             📷 Ouvrir le Scanner
                         </Link>
                     </div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="lg:hidden p-2 rounded-lg touch-feedback hover:bg-gray-100 transition-colors"
-                        aria-label="Menu"
-                    >
-                        {isOpen ? <X className="w-6 h-6 text-gray-700" /> : <Menu className="w-6 h-6 text-gray-700" />}
-                    </button>
                 </div>
-            </div>
-
-            {/* Mobile Menu */}
-            <div
-                className={cn(
-                    "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
-                    isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-                )}
-            >
-                <div className="bg-white border-t border-gray-100 px-4 py-3 space-y-1">
-                    {NAV_LINKS.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsOpen(false)}
-                            className={cn(
-                                "block py-3 px-4 rounded-xl text-base font-medium transition-colors",
-                                pathname === link.href
-                                    ? "text-[#2E7D32] bg-green-50"
-                                    : "text-gray-700 hover:bg-gray-50"
-                            )}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                    <Link
-                        href="/scanner"
-                        onClick={() => setIsOpen(false)}
-                        className="block w-full text-center bg-gradient-to-r from-[#2E7D32] to-[#43A047] text-white py-3.5 px-4 rounded-xl font-semibold mt-2 shadow-md"
-                    >
-                        📷 Ouvrir le Scanner
-                    </Link>
-                </div>
-            </div>
-        </nav>
+            )}
+        </header>
     );
 }

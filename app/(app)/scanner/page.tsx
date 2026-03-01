@@ -23,7 +23,7 @@ const DEMO_ETABLISSEMENTS = [
 
 const SMILEY_COLORS: Record<number, string> = {
     5: "bg-green-600", 4: "bg-green-500", 3: "bg-yellow-500",
-    2: "bg-orange-500", 1: "bg-red-600", 0: "bg-gray-500",
+    2: "bg-orange-500", 1: "bg-red-600", 0: "bg-bg-muted0",
 };
 
 export default function ScannerPage() {
@@ -71,15 +71,15 @@ export default function ScannerPage() {
                 /* Search Fallback */
                 <div className="flex-1 bg-gray-900 px-4 py-4">
                     <div className="relative mb-4">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
                         <input
                             autoFocus
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Rechercher un établissement..."
-                            className="w-full h-12 pl-11 pr-10 rounded-xl bg-gray-800 text-white text-base placeholder-gray-500 border border-gray-700 focus:border-citoyen-green focus:outline-none"
+                            className="w-full h-12 pl-11 pr-10 rounded-xl bg-bg-card text-white text-base placeholder-gray-500 border border-border focus:border-emerald focus:outline-none"
                         />
-                        <button onClick={() => { setShowSearch(false); setSearchQuery(""); }} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <button onClick={() => { setShowSearch(false); setSearchQuery(""); }} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted">
                             <X className="w-5 h-5" />
                         </button>
                     </div>
@@ -87,22 +87,22 @@ export default function ScannerPage() {
                     {searchQuery.length >= 2 && (
                         <div className="space-y-2">
                             {searchResults.length === 0 ? (
-                                <p className="text-gray-500 text-sm text-center py-8">Aucun résultat pour &quot;{searchQuery}&quot;</p>
+                                <p className="text-text-muted text-sm text-center py-8">Aucun résultat pour &quot;{searchQuery}&quot;</p>
                             ) : (
                                 searchResults.map((etab) => (
                                     <Link
                                         key={etab.id}
                                         href={`/scanner/resultat?id=${etab.id}`}
-                                        className="flex items-center gap-3 bg-gray-800 rounded-xl p-3 hover:bg-gray-700 transition-colors"
+                                        className="flex items-center gap-3 bg-bg-card rounded-xl p-3 hover:bg-gray-700 transition-colors"
                                     >
                                         <div className={cn("w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm", SMILEY_COLORS[etab.smiley])}>
                                             {etab.smiley}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <p className="text-white text-sm font-medium truncate">{etab.nom}</p>
-                                            <p className="text-gray-400 text-xs truncate">{etab.adresse}</p>
+                                            <p className="text-text-muted text-xs truncate">{etab.adresse}</p>
                                         </div>
-                                        <span className="text-gray-500 text-xs">{etab.categorie}</span>
+                                        <span className="text-text-muted text-xs">{etab.categorie}</span>
                                     </Link>
                                 ))
                             )}
@@ -110,7 +110,7 @@ export default function ScannerPage() {
                     )}
 
                     {searchQuery.length < 2 && (
-                        <p className="text-gray-500 text-sm text-center py-8">Tapez au moins 2 caractères</p>
+                        <p className="text-text-muted text-sm text-center py-8">Tapez au moins 2 caractères</p>
                     )}
                 </div>
             ) : (
@@ -127,14 +127,14 @@ export default function ScannerPage() {
                                 className={cn(
                                     "w-60 h-60 border-4 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer",
                                     scanning
-                                        ? "border-citoyen-green animate-pulse"
+                                        ? "border-emerald animate-pulse"
                                         : "border-green-400 bg-green-500/20"
                                 )}
                             >
                                 {scanning ? (
                                     <div className="text-center">
-                                        <p className="text-gray-400 text-xs mb-2">📷 Zone de scan</p>
-                                        <p className="text-gray-500 text-[10px]">Cliquez pour simuler un scan</p>
+                                        <p className="text-text-muted text-xs mb-2">📷 Zone de scan</p>
+                                        <p className="text-text-muted text-[10px]">Cliquez pour simuler un scan</p>
                                     </div>
                                 ) : (
                                     <div className="text-center">
@@ -145,10 +145,10 @@ export default function ScannerPage() {
                             </button>
 
                             {/* Corner decorations */}
-                            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-citoyen-green rounded-tl-lg" />
-                            <div className="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-citoyen-green rounded-tr-lg" />
-                            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-4 border-l-4 border-citoyen-green rounded-bl-lg" />
-                            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-citoyen-green rounded-br-lg" />
+                            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-emerald rounded-tl-lg" />
+                            <div className="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-emerald rounded-tr-lg" />
+                            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-4 border-l-4 border-emerald rounded-bl-lg" />
+                            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-emerald rounded-br-lg" />
                         </div>
                     </div>
 
@@ -164,12 +164,12 @@ export default function ScannerPage() {
                                 onClick={() => setTorch(!torch)}
                                 className={cn(
                                     "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors",
-                                    torch ? "bg-yellow-500 text-black" : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                                    torch ? "bg-yellow-500 text-black" : "bg-gray-700 text-text-muted hover:bg-gray-600"
                                 )}
                             >
                                 <Flashlight className="w-4 h-4" /> {torch ? "Torche ON" : "Torche"}
                             </button>
-                            <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-gray-700 text-gray-300 hover:bg-gray-600 cursor-pointer transition-colors">
+                            <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-gray-700 text-text-muted hover:bg-gray-600 cursor-pointer transition-colors">
                                 <Image className="w-4 h-4" /> Galerie
                                 <input type="file" accept="image/*" className="hidden" onChange={() => handleDemoScan()} />
                             </label>
@@ -178,14 +178,14 @@ export default function ScannerPage() {
                         {/* Divider */}
                         <div className="flex items-center gap-3 px-4">
                             <div className="flex-1 h-px bg-gray-600" />
-                            <span className="text-gray-500 text-xs">ou</span>
+                            <span className="text-text-muted text-xs">ou</span>
                             <div className="flex-1 h-px bg-gray-600" />
                         </div>
 
                         {/* Search fallback */}
                         <button
                             onClick={() => setShowSearch(true)}
-                            className="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 rounded-xl text-sm font-medium transition-colors"
+                            className="w-full flex items-center justify-center gap-2 bg-bg-card hover:bg-gray-700 text-text-muted py-3 rounded-xl text-sm font-medium transition-colors"
                         >
                             <Search className="w-4 h-4" /> Rechercher un établissement par nom
                         </button>

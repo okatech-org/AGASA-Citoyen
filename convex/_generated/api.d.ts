@@ -15,6 +15,8 @@ import type * as etablissements_queries from "../etablissements/queries.js";
 import type * as gateway_inbound from "../gateway/inbound.js";
 import type * as gateway_outbound from "../gateway/outbound.js";
 import type * as manuels_queries from "../manuels/queries.js";
+import type * as public_mutations from "../public/mutations.js";
+import type * as public_queries from "../public/queries.js";
 import type * as scanner_queries from "../scanner/queries.js";
 import type * as seed from "../seed.js";
 import type * as signalements_queries from "../signalements/queries.js";
@@ -33,6 +35,8 @@ declare const fullApi: ApiFromModules<{
   "gateway/inbound": typeof gateway_inbound;
   "gateway/outbound": typeof gateway_outbound;
   "manuels/queries": typeof manuels_queries;
+  "public/mutations": typeof public_mutations;
+  "public/queries": typeof public_queries;
   "scanner/queries": typeof scanner_queries;
   seed: typeof seed;
   "signalements/queries": typeof signalements_queries;

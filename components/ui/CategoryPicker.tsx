@@ -27,15 +27,15 @@ export default function CategoryPicker({
                         className={cn(
                             "flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all touch-feedback",
                             isSelected
-                                ? "border-citoyen-green bg-green-50"
-                                : "border-gray-200 bg-white hover:border-gray-300"
+                                ? "border-emerald bg-green-50"
+                                : "border-border bg-white hover:border-border"
                         )}
                     >
                         <span className="text-3xl mb-1">{cat.icone}</span>
                         <span
                             className={cn(
                                 "text-xs font-medium text-center",
-                                isSelected ? "text-citoyen-green" : "text-gray-700"
+                                isSelected ? "text-emerald" : "text-text"
                             )}
                         >
                             {cat.label}

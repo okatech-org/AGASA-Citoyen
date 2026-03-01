@@ -10,11 +10,11 @@ export default function ApiGatewayAdminPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
-                        <Network className="w-6 h-6 text-citoyen-green" />
+                    <h1 className="text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+                        <Network className="w-6 h-6 text-emerald" />
                         API Gateway (Citoyen ↔ Core)
                     </h1>
-                    <p className="text-gray-500 text-sm mt-1">
+                    <p className="text-text-muted text-sm mt-1">
                         Monitoring des flux F5 (sortant) et F6 (entrant) avec AGASA-Core.
                     </p>
                 </div>
@@ -87,7 +87,7 @@ function GatewayPanel({
 
             <div className="p-4 bg-white space-y-4">
                 {/* Actions simulées */}
-                <div className="flex flex-wrap gap-2 pb-4 border-b border-gray-100">
+                <div className="flex flex-wrap gap-2 pb-4 border-b border-border">
                     {fluxType === "F6_INBOUND" ? (
                         <>
                             <button
@@ -117,36 +117,36 @@ function GatewayPanel({
                                 <Send className={`w-3.5 h-3.5 ${loading ? 'animate-bounce' : ''}`} />
                                 Envoyer Stats Usage (F5.2)
                             </button>
-                            <p className="text-xs text-gray-400 mt-2 block w-full">Note: Les signalements F5.1 sont envoyés automatiquement par les citoyens.</p>
+                            <p className="text-xs text-text-muted mt-2 block w-full">Note: Les signalements F5.1 sont envoyés automatiquement par les citoyens.</p>
                         </>
                     )}
                 </div>
 
                 {/* Logs Table */}
                 <div className="space-y-2">
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Derniers Journaux (50)</h3>
+                    <h3 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">Derniers Journaux (50)</h3>
                     {logs === undefined ? (
                         <div className="animate-pulse space-y-2">
-                            <div className="h-10 bg-gray-100 rounded-lg"></div>
-                            <div className="h-10 bg-gray-100 rounded-lg"></div>
-                            <div className="h-10 bg-gray-100 rounded-lg"></div>
+                            <div className="h-10 bg-bg-muted rounded-lg"></div>
+                            <div className="h-10 bg-bg-muted rounded-lg"></div>
+                            <div className="h-10 bg-bg-muted rounded-lg"></div>
                         </div>
                     ) : logs.length === 0 ? (
-                        <p className="text-sm text-gray-500 text-center py-4 bg-gray-50 rounded-lg">Aucun journal enregistré.</p>
+                        <p className="text-sm text-text-muted text-center py-4 bg-bg-muted rounded-lg">Aucun journal enregistré.</p>
                     ) : (
                         <div className="max-h-96 overflow-y-auto space-y-1">
                             {logs.map((log: any) => (
-                                <div key={log._id} className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 rounded-lg border border-gray-100 hover:bg-gray-50 text-xs gap-2 transition-colors">
+                                <div key={log._id} className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 rounded-lg border border-border hover:bg-bg-muted text-xs gap-2 transition-colors">
                                     <div className="flex items-center gap-2 overflow-hidden">
                                         {log.statut === "succes" ? (
                                             <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
                                         ) : (
                                             <XCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
                                         )}
-                                        <span className="font-mono text-gray-700 truncate" title={log.endpoint}>{log.endpoint}</span>
+                                        <span className="font-mono text-text truncate" title={log.endpoint}>{log.endpoint}</span>
                                     </div>
-                                    <div className="flex items-center gap-3 text-gray-500 flex-shrink-0">
-                                        <span className="bg-gray-100 px-1.5 py-0.5 rounded text-[10px]">{log.dureeMs}ms</span>
+                                    <div className="flex items-center gap-3 text-text-muted flex-shrink-0">
+                                        <span className="bg-bg-muted px-1.5 py-0.5 rounded text-[10px]">{log.dureeMs}ms</span>
                                         <span>{new Date(log.date).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
                                     </div>
                                 </div>

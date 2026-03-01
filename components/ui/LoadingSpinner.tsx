@@ -21,11 +21,11 @@ export default function LoadingSpinner({
         <div className={cn("flex flex-col items-center justify-center gap-3", className)}>
             <div
                 className={cn(
-                    "rounded-full border-gray-200 border-t-citoyen-green animate-spin",
+                    "rounded-full border-border border-t-emerald animate-spin",
                     sizeStyles[size]
                 )}
             />
-            {text && <p className="text-sm text-gray-500">{text}</p>}
+            {text && <p className="text-sm text-text-muted">{text}</p>}
         </div>
     );
 }

@@ -42,6 +42,7 @@ interface AuthContextType {
     loginDemo: (profil: "citoyen" | "moderateur" | "admin") => Promise<{ success: boolean }>;
     logout: () => Promise<void>;
     updatePseudo: (pseudo: string) => Promise<void>;
+    updateProfile: (data: { pseudo?: string; province?: string; zonesAlerte?: string[]; notificationsActives?: boolean }) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -76,6 +77,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const loginDemoMutation = useMutation(api.auth.users.loginDemo);
     const logoutMutation = useMutation(api.auth.users.logout);
     const updatePseudoMutation = useMutation(api.auth.users.updatePseudo);
+    const updateProfileMutation = useMutation(api.auth.users.updateProfile);
 
     const saveToken = useCallback((newToken: string) => {
         setToken(newToken);
@@ -145,6 +147,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         [token, updatePseudoMutation]
     );
 
+    const updateProfile = useCallback(
+        async (data: { pseudo?: string; province?: string; zonesAlerte?: string[]; notificationsActives?: boolean }) => {
+            if (!token) throw new Error("Non connecté");
+            await updateProfileMutation({ sessionToken: token, ...data });
+        },
+        [token, updateProfileMutation]
+    );
+
     const value: AuthContextType = {
         user: user ?? null,
         isAuthenticated: !!user,
@@ -161,6 +171,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loginDemo,
         logout,
         updatePseudo,
+        updateProfile,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

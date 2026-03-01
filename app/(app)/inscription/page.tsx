@@ -86,9 +86,9 @@ export default function InscriptionPage() {
                     }}
                     className="p-2 touch-feedback rounded-xl"
                 >
-                    <ArrowLeft className="w-5 h-5 text-gray-700" />
+                    <ArrowLeft className="w-5 h-5 text-text" />
                 </button>
-                <h1 className="text-lg font-bold text-gray-900">
+                <h1 className="text-lg font-bold text-text">
                     {step === "phone" && "Créer un compte"}
                     {step === "otp" && "Vérification"}
                     {step === "pseudo" && "Votre pseudo"}
@@ -104,8 +104,8 @@ export default function InscriptionPage() {
                             className={cn(
                                 "h-1 flex-1 rounded-full transition-colors",
                                 i <= ["phone", "otp", "pseudo"].indexOf(step)
-                                    ? "bg-citoyen-green"
-                                    : "bg-gray-200"
+                                    ? "bg-emerald"
+                                    : "bg-border"
                             )}
                         />
                     ))}
@@ -118,20 +118,20 @@ export default function InscriptionPage() {
                     <div className="space-y-6">
                         <div className="text-center mb-8">
                             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                                <Phone className="w-10 h-10 text-citoyen-green" />
+                                <Phone className="w-10 h-10 text-emerald" />
                             </div>
-                            <h2 className="text-xl font-bold text-gray-900 mb-2">Votre numéro de téléphone</h2>
-                            <p className="text-sm text-gray-500">
+                            <h2 className="text-xl font-bold text-text mb-2">Votre numéro de téléphone</h2>
+                            <p className="text-sm text-text-muted">
                                 Inscription optionnelle pour suivre vos signalements
                             </p>
                         </div>
 
                         <div>
-                            <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            <label className="text-sm font-medium text-text mb-1 block">
                                 Numéro de téléphone
                             </label>
                             <div className="flex items-center gap-2">
-                                <span className="text-base font-medium text-gray-500 bg-gray-100 px-3 py-3 rounded-xl">
+                                <span className="text-base font-medium text-text-muted bg-bg-muted px-3 py-3 rounded-xl">
                                     +241
                                 </span>
                                 <input
@@ -140,7 +140,7 @@ export default function InscriptionPage() {
                                     onChange={(e) => setTelephone(e.target.value.replace(/\D/g, ""))}
                                     placeholder="06 XX XX XX"
                                     maxLength={9}
-                                    className="flex-1 h-12 px-4 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-citoyen-green"
+                                    className="flex-1 h-12 px-4 rounded-xl border border-border text-base focus:outline-none focus:ring-2 focus:ring-emerald"
                                     inputMode="tel"
                                     autoFocus
                                 />
@@ -148,14 +148,14 @@ export default function InscriptionPage() {
                         </div>
 
                         {error && (
-                            <p className="text-sm text-citoyen-red bg-red-50 p-3 rounded-xl">{error}</p>
+                            <p className="text-sm text-rose bg-red-50 p-3 rounded-xl">{error}</p>
                         )}
 
                         <CitizenButton onClick={handleRequestOTP} disabled={loading || !telephone}>
                             {loading ? <LoadingSpinner size="sm" /> : "Recevoir le code SMS"}
                         </CitizenButton>
 
-                        <p className="text-center text-xs text-gray-400">
+                        <p className="text-center text-xs text-text-muted">
                             🔒 Aucune donnée personnelle n&apos;est partagée.
                             <br />
                             En mode démo, le code est <strong>1234</strong>.
@@ -168,10 +168,10 @@ export default function InscriptionPage() {
                     <div className="space-y-6">
                         <div className="text-center mb-8">
                             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                                <KeyRound className="w-10 h-10 text-citoyen-green" />
+                                <KeyRound className="w-10 h-10 text-emerald" />
                             </div>
-                            <h2 className="text-xl font-bold text-gray-900 mb-2">Code de vérification</h2>
-                            <p className="text-sm text-gray-500">
+                            <h2 className="text-xl font-bold text-text mb-2">Code de vérification</h2>
+                            <p className="text-sm text-text-muted">
                                 Entrez le code à 4 chiffres envoyé au +241 {telephone}
                             </p>
                         </div>
@@ -186,8 +186,8 @@ export default function InscriptionPage() {
                                     inputMode="numeric"
                                     className={cn(
                                         "w-14 h-16 text-center text-2xl font-bold rounded-xl border-2 transition-colors",
-                                        "focus:outline-none focus:border-citoyen-green",
-                                        otpCode[i] ? "border-citoyen-green bg-green-50" : "border-gray-200"
+                                        "focus:outline-none focus:border-emerald",
+                                        otpCode[i] ? "border-emerald bg-green-50" : "border-border"
                                     )}
                                     onChange={(e) => {
                                         const val = e.target.value.replace(/\D/g, "");
@@ -210,7 +210,7 @@ export default function InscriptionPage() {
                         </div>
 
                         {error && (
-                            <p className="text-sm text-citoyen-red bg-red-50 p-3 rounded-xl text-center">{error}</p>
+                            <p className="text-sm text-rose bg-red-50 p-3 rounded-xl text-center">{error}</p>
                         )}
 
                         <CitizenButton onClick={handleVerifyOTP} disabled={loading || otpCode.length !== 4}>
@@ -219,7 +219,7 @@ export default function InscriptionPage() {
 
                         <button
                             onClick={() => setStep("phone")}
-                            className="w-full text-center text-sm text-citoyen-blue font-medium"
+                            className="w-full text-center text-sm text-blue font-medium"
                         >
                             Renvoyer le code
                         </button>
@@ -231,10 +231,10 @@ export default function InscriptionPage() {
                     <div className="space-y-6">
                         <div className="text-center mb-8">
                             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                                <User className="w-10 h-10 text-citoyen-green" />
+                                <User className="w-10 h-10 text-emerald" />
                             </div>
-                            <h2 className="text-xl font-bold text-gray-900 mb-2">Choisissez un pseudo</h2>
-                            <p className="text-sm text-gray-500">
+                            <h2 className="text-xl font-bold text-text mb-2">Choisissez un pseudo</h2>
+                            <p className="text-sm text-text-muted">
                                 Optionnel — visible sur vos signalements publics
                             </p>
                         </div>
@@ -245,7 +245,7 @@ export default function InscriptionPage() {
                             onChange={(e) => setPseudo(e.target.value)}
                             placeholder="ex: Citoyen241"
                             maxLength={30}
-                            className="w-full h-12 px-4 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-citoyen-green"
+                            className="w-full h-12 px-4 rounded-xl border border-border text-base focus:outline-none focus:ring-2 focus:ring-emerald"
                             autoFocus
                         />
 

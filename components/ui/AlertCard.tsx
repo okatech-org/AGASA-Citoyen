@@ -19,14 +19,14 @@ const urgenceConfig = {
     critique: {
         label: "CRITIQUE",
         color: "#C62828",
-        borderColor: "border-l-4 border-l-citoyen-red",
+        borderColor: "border-l-4 border-l-rose",
         bgColor: "bg-red-50",
         icon: "🔴",
     },
     importante: {
         label: "IMPORTANTE",
         color: "#EF6C00",
-        borderColor: "border-l-4 border-l-citoyen-orange",
+        borderColor: "border-l-4 border-l-amber",
         bgColor: "bg-orange-50",
         icon: "🟠",
     },
@@ -40,7 +40,7 @@ const urgenceConfig = {
     information: {
         label: "INFORMATION",
         color: "#1565C0",
-        borderColor: "border-l-4 border-l-citoyen-blue",
+        borderColor: "border-l-4 border-l-blue",
         bgColor: "bg-blue-50",
         icon: "🔵",
     },
@@ -78,7 +78,7 @@ export default function AlertCard({
                         {config.label}
                     </span>
                     {isNew && (
-                        <span className="badge bg-citoyen-red text-white text-[10px]">
+                        <span className="badge bg-rose text-white text-[10px]">
                             NOUVEAU
                         </span>
                     )}
@@ -95,7 +95,7 @@ export default function AlertCard({
             {/* Footer */}
             <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-500">📍 {portee}</span>
-                <div className="flex items-center gap-1 text-citoyen-blue">
+                <div className="flex items-center gap-1 text-blue">
                     <span className="text-xs font-medium">Voir détail</span>
                     <ChevronRight className="w-4 h-4" />
                 </div>

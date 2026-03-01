@@ -10,7 +10,7 @@ const SMILEY_COLORS: Record<number, { bg: string; text: string }> = {
     3: { bg: "bg-yellow-100", text: "text-yellow-700" },
     2: { bg: "bg-orange-100", text: "text-orange-700" },
     1: { bg: "bg-red-100", text: "text-red-700" },
-    0: { bg: "bg-gray-200", text: "text-gray-600" },
+    0: { bg: "bg-border", text: "text-text-muted" },
 };
 
 const DEMO_ETABLISSEMENTS = [
@@ -37,25 +37,25 @@ export default function EtablissementsAdminPage() {
     return (
         <div className="space-y-4">
             <div>
-                <h1 className="text-2xl font-extrabold text-gray-900">Établissements</h1>
-                <p className="text-sm text-gray-500">{DEMO_ETABLISSEMENTS.length} établissements enregistrés</p>
+                <h1 className="text-2xl font-extrabold text-text">Établissements</h1>
+                <p className="text-sm text-text-muted">{DEMO_ETABLISSEMENTS.length} établissements enregistrés</p>
             </div>
 
             {/* Filters */}
             <div className="flex gap-2 flex-wrap">
                 <div className="relative flex-1 min-w-[200px]">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Rechercher un établissement..."
-                        className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 text-sm"
+                        className="w-full h-10 pl-9 pr-3 rounded-lg border border-border text-sm"
                     />
                 </div>
                 <select
                     value={catFilter}
                     onChange={(e) => setCatFilter(e.target.value)}
-                    className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white"
+                    className="h-10 px-3 rounded-lg border border-border text-sm bg-white"
                 >
                     <option value="all">Toutes catégories</option>
                     <option value="restaurant">Restaurant</option>
@@ -68,10 +68,10 @@ export default function EtablissementsAdminPage() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-gray-500">
+                        <thead className="bg-bg-muted text-text-muted">
                             <tr>
                                 <th className="text-left px-4 py-3 font-medium">Établissement</th>
                                 <th className="text-left px-4 py-3 font-medium hidden md:table-cell">Catégorie</th>
@@ -86,20 +86,20 @@ export default function EtablissementsAdminPage() {
                             {filtered.map((e) => {
                                 const smiley = SMILEY_COLORS[e.smiley];
                                 return (
-                                    <tr key={e.id} className="hover:bg-gray-50/50">
+                                    <tr key={e.id} className="hover:bg-bg-muted/50">
                                         <td className="px-4 py-3">
-                                            <p className="font-medium text-gray-900">{e.nom}</p>
-                                            <p className="text-xs text-gray-400 flex items-center gap-0.5 sm:hidden">
+                                            <p className="font-medium text-text">{e.nom}</p>
+                                            <p className="text-xs text-text-muted flex items-center gap-0.5 sm:hidden">
                                                 <MapPin className="w-3 h-3" /> {e.ville}
                                             </p>
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500 capitalize hidden md:table-cell">{e.categorie}</td>
+                                        <td className="px-4 py-3 text-text-muted capitalize hidden md:table-cell">{e.categorie}</td>
                                         <td className="px-4 py-3 text-center">
                                             <span className={cn("text-sm font-bold px-2 py-1 rounded-lg", smiley.bg, smiley.text)}>
                                                 {e.smiley} {"⭐".repeat(e.smiley)}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">{e.province}</td>
+                                        <td className="px-4 py-3 text-text-muted hidden sm:table-cell">{e.province}</td>
                                         <td className="px-4 py-3 text-center hidden md:table-cell">
                                             <span className={cn(
                                                 "text-[11px] px-2 py-0.5 rounded-full font-medium",
@@ -112,11 +112,11 @@ export default function EtablissementsAdminPage() {
                                             {e.signalements > 0 ? (
                                                 <span className="text-sm font-semibold text-red-600">{e.signalements}</span>
                                             ) : (
-                                                <span className="text-gray-300">0</span>
+                                                <span className="text-text-muted">0</span>
                                             )}
                                         </td>
                                         <td className="px-4 py-3 text-center">
-                                            <button className="text-gray-400 hover:text-citoyen-green transition-colors">
+                                            <button className="text-text-muted hover:text-emerald transition-colors">
                                                 <QrCode className="w-4 h-4 mx-auto" />
                                             </button>
                                         </td>

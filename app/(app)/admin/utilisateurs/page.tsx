@@ -37,12 +37,12 @@ export default function UtilisateursPage() {
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-gray-900">Utilisateurs</h1>
-                    <p className="text-sm text-gray-500">{DEMO_USERS.length} comptes enregistrés</p>
+                    <h1 className="text-2xl font-extrabold text-text">Utilisateurs</h1>
+                    <p className="text-sm text-text-muted">{DEMO_USERS.length} comptes enregistrés</p>
                 </div>
                 <button
                     onClick={() => setShowCreateForm(!showCreateForm)}
-                    className="flex items-center gap-1.5 text-sm bg-citoyen-green text-white px-3 py-2 rounded-lg hover:bg-green-800 transition-colors"
+                    className="flex items-center gap-1.5 text-sm bg-emerald text-white px-3 py-2 rounded-lg hover:bg-green-800 transition-colors"
                 >
                     <UserPlus className="w-4 h-4" />
                     Créer Modérateur
@@ -51,13 +51,13 @@ export default function UtilisateursPage() {
 
             {/* Create Form */}
             {showCreateForm && (
-                <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-3">
-                    <h3 className="font-bold text-sm text-gray-900">Créer un compte modérateur/admin</h3>
+                <div className="bg-white rounded-xl border border-border p-4 space-y-3">
+                    <h3 className="font-bold text-sm text-text">Créer un compte modérateur/admin</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <input placeholder="Nom complet" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                        <input placeholder="Email" type="email" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                        <input placeholder="Mot de passe" type="password" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                        <select className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white">
+                        <input placeholder="Nom complet" className="h-10 px-3 rounded-lg border border-border text-sm" />
+                        <input placeholder="Email" type="email" className="h-10 px-3 rounded-lg border border-border text-sm" />
+                        <input placeholder="Mot de passe" type="password" className="h-10 px-3 rounded-lg border border-border text-sm" />
+                        <select className="h-10 px-3 rounded-lg border border-border text-sm bg-white">
                             <option value="moderateur">Modérateur</option>
                             <option value="admin_systeme">Administrateur</option>
                         </select>
@@ -72,18 +72,18 @@ export default function UtilisateursPage() {
             {/* Filters */}
             <div className="flex gap-2 flex-wrap">
                 <div className="relative flex-1 min-w-[200px]">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Rechercher un utilisateur..."
-                        className="w-full h-10 pl-9 pr-3 rounded-lg border border-gray-200 text-sm"
+                        className="w-full h-10 pl-9 pr-3 rounded-lg border border-border text-sm"
                     />
                 </div>
                 <select
                     value={roleFilter}
                     onChange={(e) => setRoleFilter(e.target.value)}
-                    className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white"
+                    className="h-10 px-3 rounded-lg border border-border text-sm bg-white"
                 >
                     <option value="all">Tous les rôles</option>
                     <option value="citoyen">Citoyen</option>
@@ -93,10 +93,10 @@ export default function UtilisateursPage() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-gray-500">
+                        <thead className="bg-bg-muted text-text-muted">
                             <tr>
                                 <th className="text-left px-4 py-3 font-medium">Pseudo</th>
                                 <th className="text-left px-4 py-3 font-medium hidden sm:table-cell">Téléphone</th>
@@ -109,9 +109,9 @@ export default function UtilisateursPage() {
                         </thead>
                         <tbody className="divide-y divide-gray-50">
                             {filtered.map((user) => (
-                                <tr key={user.id} className="hover:bg-gray-50/50 transition-colors">
-                                    <td className="px-4 py-3 font-medium text-gray-900">{user.pseudo}</td>
-                                    <td className="px-4 py-3 text-gray-500 hidden sm:table-cell">
+                                <tr key={user.id} className="hover:bg-bg-muted/50 transition-colors">
+                                    <td className="px-4 py-3 font-medium text-text">{user.pseudo}</td>
+                                    <td className="px-4 py-3 text-text-muted hidden sm:table-cell">
                                         {user.telephone ? maskTelephone(formatTelephone(user.telephone)) : "—"}
                                     </td>
                                     <td className="px-4 py-3">
@@ -119,8 +119,8 @@ export default function UtilisateursPage() {
                                             {user.role.replace("_", " ").toUpperCase()}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-gray-500 hidden md:table-cell">{user.province}</td>
-                                    <td className="px-4 py-3 text-center text-gray-600">{user.signalements}</td>
+                                    <td className="px-4 py-3 text-text-muted hidden md:table-cell">{user.province}</td>
+                                    <td className="px-4 py-3 text-center text-text-muted">{user.signalements}</td>
                                     <td className="px-4 py-3 text-center">
                                         <span className={cn(
                                             "text-[11px] font-semibold px-2 py-0.5 rounded-full",
@@ -129,7 +129,7 @@ export default function UtilisateursPage() {
                                             {user.statut.toUpperCase()}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-right text-gray-400 text-xs">
+                                    <td className="px-4 py-3 text-right text-text-muted text-xs">
                                         {formatDate(user.inscription)}
                                     </td>
                                 </tr>

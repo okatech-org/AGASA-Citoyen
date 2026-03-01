@@ -26,12 +26,12 @@ export default function AlertesAdminPage() {
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-gray-900">Alertes rappels produits</h1>
-                    <p className="text-sm text-gray-500">{DEMO_ALERTES.filter(a => a.statut === "active").length} alertes actives</p>
+                    <h1 className="text-2xl font-extrabold text-text">Alertes rappels produits</h1>
+                    <p className="text-sm text-text-muted">{DEMO_ALERTES.filter(a => a.statut === "active").length} alertes actives</p>
                 </div>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="flex items-center gap-1.5 text-sm bg-citoyen-orange text-white px-3 py-2 rounded-lg hover:bg-orange-700 transition-colors"
+                    className="flex items-center gap-1.5 text-sm bg-amber text-white px-3 py-2 rounded-lg hover:bg-orange-700 transition-colors"
                 >
                     <Plus className="w-4 h-4" /> Nouvelle alerte
                 </button>
@@ -39,16 +39,16 @@ export default function AlertesAdminPage() {
 
             {/* Create Form */}
             {showForm && (
-                <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-3">
-                    <h3 className="font-bold text-sm text-gray-900">Créer une alerte rappel</h3>
-                    <input placeholder="Titre de l'alerte" className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm" />
+                <div className="bg-white rounded-xl border border-border p-4 space-y-3">
+                    <h3 className="font-bold text-sm text-text">Créer une alerte rappel</h3>
+                    <input placeholder="Titre de l'alerte" className="w-full h-10 px-3 rounded-lg border border-border text-sm" />
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <input placeholder="Produit" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                        <input placeholder="Marque (optionnel)" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                        <input placeholder="Lot (optionnel)" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
+                        <input placeholder="Produit" className="h-10 px-3 rounded-lg border border-border text-sm" />
+                        <input placeholder="Marque (optionnel)" className="h-10 px-3 rounded-lg border border-border text-sm" />
+                        <input placeholder="Lot (optionnel)" className="h-10 px-3 rounded-lg border border-border text-sm" />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <select className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white">
+                        <select className="h-10 px-3 rounded-lg border border-border text-sm bg-white">
                             <option value="">Motif...</option>
                             <option value="contamination">Contamination</option>
                             <option value="etiquetage">Étiquetage</option>
@@ -57,14 +57,14 @@ export default function AlertesAdminPage() {
                             <option value="chimique">Chimique</option>
                             <option value="autre">Autre</option>
                         </select>
-                        <select className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white">
+                        <select className="h-10 px-3 rounded-lg border border-border text-sm bg-white">
                             <option value="critique">🔴 Critique</option>
                             <option value="importante">🟠 Importante</option>
                             <option value="moderee">🟡 Modérée</option>
                             <option value="information">🔵 Information</option>
                         </select>
                     </div>
-                    <textarea placeholder="Action recommandée (ex: Ne pas consommer. Rapporter en magasin.)" rows={2} className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm resize-none" />
+                    <textarea placeholder="Action recommandée (ex: Ne pas consommer. Rapporter en magasin.)" rows={2} className="w-full px-3 py-2 rounded-lg border border-border text-sm resize-none" />
                     <div className="flex gap-2">
                         <CitizenButton size="sm" variant="danger" icon={<Bell className="w-4 h-4" />}>Publier l&apos;alerte</CitizenButton>
                         <CitizenButton size="sm" variant="ghost" onClick={() => setShowForm(false)}>Annuler</CitizenButton>
@@ -73,10 +73,10 @@ export default function AlertesAdminPage() {
             )}
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-gray-500">
+                        <thead className="bg-bg-muted text-text-muted">
                             <tr>
                                 <th className="text-left px-4 py-3 font-medium">Référence</th>
                                 <th className="text-left px-4 py-3 font-medium">Titre</th>
@@ -91,25 +91,25 @@ export default function AlertesAdminPage() {
                             {DEMO_ALERTES.map((alerte) => {
                                 const urg = URGENCE_STYLES[alerte.urgence];
                                 return (
-                                    <tr key={alerte.id} className="hover:bg-gray-50/50">
-                                        <td className="px-4 py-3 font-mono text-xs text-gray-400">{alerte.id}</td>
-                                        <td className="px-4 py-3 font-medium text-gray-900 max-w-[200px] truncate">{alerte.titre}</td>
-                                        <td className="px-4 py-3 text-gray-500 hidden md:table-cell">{alerte.produit}</td>
+                                    <tr key={alerte.id} className="hover:bg-bg-muted/50">
+                                        <td className="px-4 py-3 font-mono text-xs text-text-muted">{alerte.id}</td>
+                                        <td className="px-4 py-3 font-medium text-text max-w-[200px] truncate">{alerte.titre}</td>
+                                        <td className="px-4 py-3 text-text-muted hidden md:table-cell">{alerte.produit}</td>
                                         <td className="px-4 py-3 text-center">
                                             <span className={cn("text-[11px] font-semibold px-2 py-0.5 rounded-full", urg.bg, urg.text)}>
                                                 {urg.label}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3 text-center text-xs text-gray-500 hidden sm:table-cell">{alerte.portee}</td>
+                                        <td className="px-4 py-3 text-center text-xs text-text-muted hidden sm:table-cell">{alerte.portee}</td>
                                         <td className="px-4 py-3 text-center">
                                             <span className={cn(
                                                 "text-[11px] font-semibold px-2 py-0.5 rounded-full",
-                                                alerte.statut === "active" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
+                                                alerte.statut === "active" ? "bg-green-100 text-green-700" : "bg-bg-muted text-text-muted"
                                             )}>
                                                 {alerte.statut.toUpperCase()}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3 text-right text-xs text-gray-400">{formatDate(alerte.dateEmission)}</td>
+                                        <td className="px-4 py-3 text-right text-xs text-text-muted">{formatDate(alerte.dateEmission)}</td>
                                     </tr>
                                 );
                             })}

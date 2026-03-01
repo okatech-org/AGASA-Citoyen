@@ -98,11 +98,11 @@ export const updateSmiley = mutation({
         const start = Date.now();
         try {
             // Calcul couleurs emoji text etc.
-            let couleur = "#2E7D32"; let texte = "Très bon"; let emoji = "🤩";
-            if (args.score === 4) { couleur = "#43A047"; texte = "Bon"; emoji = "🙂"; }
+            let couleur = "#059669"; let texte = "Très bon"; let emoji = "🤩";
+            if (args.score === 4) { couleur = "#10b981"; texte = "Bon"; emoji = "🙂"; }
             if (args.score === 3) { couleur = "#FDD835"; texte = "Acceptable"; emoji = "😐"; }
-            if (args.score === 2) { couleur = "#EF6C00"; texte = "Insuffisant"; emoji = "😟"; }
-            if (args.score === 1) { couleur = "#C62828"; texte = "Mauvais"; emoji = "😡"; }
+            if (args.score === 2) { couleur = "#f59e0b"; texte = "Insuffisant"; emoji = "😟"; }
+            if (args.score === 1) { couleur = "#f43f5e"; texte = "Mauvais"; emoji = "😡"; }
             if (args.score === 0) { couleur = "#212121"; texte = "Fermé"; emoji = "⛔"; }
 
             const etab = await ctx.db.get(args.etablissementId);

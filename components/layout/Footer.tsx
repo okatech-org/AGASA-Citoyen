@@ -1,88 +1,94 @@
 import Link from "next/link";
+import { Shield, MapPin, Phone, Mail, ArrowRight, BadgeCheck } from "lucide-react";
 
-// ============================================
-// FOOTER PUBLIC — AGASA-Citoyen
-// Responsive: 1 col mobile → 4 col desktop
-// ============================================
+const NAV_LINKS = [
+    { href: "/", label: "Accueil" },
+    { href: "/comment-ca-marche", label: "Comment ça marche" },
+    { href: "/securite-alimentaire", label: "Sécurité alimentaire" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/contact", label: "Contact" },
+    { href: "/demo", label: "Démo" },
+];
+
+const RESOURCE_LINKS = [
+    { href: "/manuels", label: "Manuels pratiques" },
+    { href: "/alertes", label: "Alertes rappels" },
+    { href: "/scanner", label: "Scanner QR" },
+    { href: "/signaler", label: "Faire un signalement" },
+];
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-300">
+        <footer className="bg-bg-muted dark:bg-bg-muted border-t border-border dark:border-border">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                {/* Top Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-10">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                     {/* Brand */}
-                    <div className="sm:col-span-2 lg:col-span-1">
-                        <div className="flex items-center gap-2.5 mb-4">
-                            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2E7D32] to-[#43A047] flex items-center justify-center">
-                                <span className="text-white text-sm font-bold">A</span>
+                    <div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center">
+                                <Shield size={20} className="text-white" />
                             </div>
-                            <span className="font-bold text-lg text-white">AGASA-Citoyen</span>
+                            <div>
+                                <h3 className="font-serif font-bold text-text dark:text-text">AGASA-Citoyen</h3>
+                                <p className="text-[10px] text-text-muted dark:text-text-muted uppercase tracking-wider">Sécurité alimentaire</p>
+                            </div>
                         </div>
-                        <p className="text-sm text-gray-400 mb-2">
-                            Agence Gabonaise de Sécurité Alimentaire
+                        <p className="text-sm text-text-muted dark:text-text-muted leading-relaxed mb-3">
+                            Plateforme citoyenne de sécurité alimentaire de l&apos;Agence Gabonaise de Sécurité Alimentaire.
                         </p>
-                        <p className="text-xs text-gray-500">
-                            🔒 Anonymat garanti — Vos signalements sont confidentiels
-                        </p>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                            <BadgeCheck size={12} /> Service public officiel
+                        </span>
                     </div>
 
-                    {/* Links */}
+                    {/* Navigation */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Liens utiles
-                        </h3>
-                        <ul className="space-y-2.5 text-sm">
-                            <li><Link href="/comment-ca-marche" className="text-gray-400 hover:text-white transition-colors">Comment ça marche</Link></li>
-                            <li><Link href="/securite-alimentaire" className="text-gray-400 hover:text-white transition-colors">Sécurité alimentaire</Link></li>
-                            <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link></li>
-                            <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
-                            <li><Link href="/demo" className="text-gray-400 hover:text-white transition-colors">Démonstration</Link></li>
+                        <h4 className="font-semibold text-text dark:text-text mb-4 text-sm uppercase tracking-wider">Navigation</h4>
+                        <ul className="space-y-2.5">
+                            {NAV_LINKS.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-sm text-text-muted dark:text-text-muted hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Ecosystem */}
+                    {/* Resources */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Écosystème AGASA
-                        </h3>
-                        <ul className="space-y-2.5 text-sm text-gray-400">
-                            <li>🏢 AGASA-Core — Plateforme centrale</li>
-                            <li>🔍 AGASA-Inspect — Inspections terrain</li>
-                            <li>📊 AGASA-Pro — Espace opérateurs</li>
-                            <li className="text-white font-medium">📱 AGASA-Citoyen — Application citoyenne</li>
+                        <h4 className="font-semibold text-text dark:text-text mb-4 text-sm uppercase tracking-wider">Ressources</h4>
+                        <ul className="space-y-2.5">
+                            {RESOURCE_LINKS.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-sm text-text-muted dark:text-text-muted hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     {/* Contact */}
                     <div>
-                        <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                            Contact
-                        </h3>
-                        <ul className="space-y-2.5 text-sm text-gray-400">
-                            <li>📍 Libreville, Estuaire</li>
-                            <li>📞 +241 01 XX XX XX</li>
-                            <li>📧 contact@agasa.ga</li>
-                            <li className="pt-2">
-                                <Link
-                                    href="/contact"
-                                    className="inline-flex items-center gap-1 text-[#43A047] hover:text-[#66BB6A] transition-colors text-xs font-semibold"
-                                >
-                                    Nous contacter →
-                                </Link>
-                            </li>
+                        <h4 className="font-semibold text-text dark:text-text mb-4 text-sm uppercase tracking-wider">Contact</h4>
+                        <ul className="space-y-2.5 text-sm text-text-muted dark:text-text-muted">
+                            <li className="flex items-center gap-2"><MapPin size={14} className="shrink-0" /> Libreville, Estuaire</li>
+                            <li className="flex items-center gap-2"><Phone size={14} className="shrink-0" /> +241 01 XX XX XX</li>
+                            <li className="flex items-center gap-2"><Mail size={14} className="shrink-0" /> contact@agasa.ga</li>
                         </ul>
+                        <Link
+                            href="/contact"
+                            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                        >
+                            Envoyer un message <ArrowRight size={14} />
+                        </Link>
                     </div>
                 </div>
 
-                {/* Divider */}
-                <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <p className="text-xs text-gray-500">
-                        © 2026 AGASA — République Gabonaise — Tous droits réservés
-                    </p>
-                    <p className="text-xs text-gray-600">
-                        🇬🇦 Fait au Gabon pour les Gabonais
-                    </p>
+                <div className="mt-12 pt-8 border-t border-border dark:border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p className="text-xs text-text-muted dark:text-text-muted">© 2026 AGASA — République Gabonaise</p>
+                    <p className="text-xs text-text-muted dark:text-text-muted">Fait au 🇬🇦 Gabon pour la sécurité alimentaire</p>
                 </div>
             </div>
         </footer>

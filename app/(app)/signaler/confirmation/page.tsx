@@ -24,14 +24,14 @@ function ConfirmationContent() {
                 </div>
 
                 <div>
-                    <h1 className="text-xl font-bold text-gray-900">Signalement envoyé !</h1>
-                    <p className="text-sm text-gray-500 mt-1">Merci pour votre vigilance citoyenne</p>
+                    <h1 className="text-xl font-bold text-text">Signalement envoyé !</h1>
+                    <p className="text-sm text-text-muted mt-1">Merci pour votre vigilance citoyenne</p>
                 </div>
 
                 {/* Reference */}
-                <div className="bg-gray-50 rounded-xl p-4">
-                    <p className="text-xs text-gray-400 mb-1">Référence</p>
-                    <p className="text-lg font-mono font-bold text-gray-900">{ref}</p>
+                <div className="bg-bg-muted rounded-xl p-4">
+                    <p className="text-xs text-text-muted mb-1">Référence</p>
+                    <p className="text-lg font-mono font-bold text-text">{ref}</p>
                 </div>
 
                 {/* Info */}
@@ -43,7 +43,7 @@ function ConfirmationContent() {
                 {/* Track link */}
                 <Link
                     href="/mes-signalements"
-                    className="block w-full bg-citoyen-green/10 text-citoyen-green py-3 rounded-xl text-sm font-semibold hover:bg-citoyen-green/20 transition-colors"
+                    className="block w-full bg-emerald/10 text-emerald py-3 rounded-xl text-sm font-semibold hover:bg-emerald/20 transition-colors"
                 >
                     📋 Suivre dans &quot;Mes signalements&quot;
                 </Link>
@@ -52,7 +52,7 @@ function ConfirmationContent() {
                 <div className="space-y-2">
                     <Link
                         href="/scanner"
-                        className="flex items-center justify-center gap-2 w-full h-11 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors"
+                        className="flex items-center justify-center gap-2 w-full h-11 bg-bg-muted text-text rounded-xl text-sm font-medium hover:bg-border transition-colors"
                     >
                         <Camera className="w-4 h-4" /> Scanner un QR
                     </Link>
@@ -64,7 +64,7 @@ function ConfirmationContent() {
                     </Link>
                     <Link
                         href="/"
-                        className="flex items-center justify-center gap-2 w-full h-11 text-gray-400 text-sm hover:text-gray-600 transition-colors"
+                        className="flex items-center justify-center gap-2 w-full h-11 text-text-muted text-sm hover:text-text-muted transition-colors"
                     >
                         <Home className="w-4 h-4" /> Retour à l&apos;accueil
                     </Link>

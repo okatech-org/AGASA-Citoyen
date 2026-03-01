@@ -147,11 +147,11 @@ export const populate = mutation({
                 else if (r < 0.85) smiley = 4;
                 else smiley = 5;
 
-                let couleur = "#2E7D32"; let texte = "Très bon"; let emoji = "🤩";
-                if (smiley === 4) { couleur = "#43A047"; texte = "Bon"; emoji = "🙂"; }
+                let couleur = "#059669"; let texte = "Très bon"; let emoji = "🤩";
+                if (smiley === 4) { couleur = "#10b981"; texte = "Bon"; emoji = "🙂"; }
                 if (smiley === 3) { couleur = "#FDD835"; texte = "Acceptable"; emoji = "😐"; }
-                if (smiley === 2) { couleur = "#EF6C00"; texte = "Insuffisant"; emoji = "😟"; }
-                if (smiley === 1) { couleur = "#C62828"; texte = "Mauvais"; emoji = "😡"; }
+                if (smiley === 2) { couleur = "#f59e0b"; texte = "Insuffisant"; emoji = "😟"; }
+                if (smiley === 1) { couleur = "#f43f5e"; texte = "Mauvais"; emoji = "😡"; }
                 if (smiley === 0) { couleur = "#212121"; texte = "Fermé"; emoji = "⛔"; }
 
                 // Random status

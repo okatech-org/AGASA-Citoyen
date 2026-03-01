@@ -33,7 +33,7 @@ const STATUT_COLORS: Record<string, string> = {
     en_verification: "bg-blue-100 text-blue-700",
     inspection_programmee: "bg-yellow-100 text-yellow-700",
     resolu: "bg-green-100 text-green-700",
-    rejete: "bg-gray-100 text-gray-600",
+    rejete: "bg-bg-muted text-text-muted",
 };
 
 export default function SignalementsAdminPage() {
@@ -51,22 +51,22 @@ export default function SignalementsAdminPage() {
     return (
         <div className="space-y-4">
             <div>
-                <h1 className="text-2xl font-extrabold text-gray-900">Modération des signalements</h1>
-                <p className="text-sm text-gray-500">Page centrale de l&apos;administration</p>
+                <h1 className="text-2xl font-extrabold text-text">Modération des signalements</h1>
+                <p className="text-sm text-text-muted">Page centrale de l&apos;administration</p>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
+            <div className="flex gap-1 bg-bg-muted rounded-lg p-1">
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
                         onClick={() => { setActiveTab(tab.id); setSelectedId(null); }}
                         className={cn(
                             "flex-1 py-2 px-3 rounded-md text-sm font-medium transition-colors",
-                            activeTab === tab.id ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                            activeTab === tab.id ? "bg-white text-text shadow-sm" : "text-text-muted hover:text-text"
                         )}
                     >
-                        {tab.label} <span className="ml-1 text-xs text-gray-400">({tab.count})</span>
+                        {tab.label} <span className="ml-1 text-xs text-text-muted">({tab.count})</span>
                     </button>
                 ))}
             </div>
@@ -75,7 +75,7 @@ export default function SignalementsAdminPage() {
                 {/* List */}
                 <div className={cn("space-y-2 flex-1", selectedId && "hidden md:block md:max-w-[40%]")}>
                     {filtered.length === 0 ? (
-                        <div className="text-center py-12 text-gray-400 text-sm">
+                        <div className="text-center py-12 text-text-muted text-sm">
                             Aucun signalement dans cette catégorie
                         </div>
                     ) : (
@@ -85,22 +85,22 @@ export default function SignalementsAdminPage() {
                                 onClick={() => setSelectedId(sig.id)}
                                 className={cn(
                                     "w-full text-left bg-white rounded-xl border p-4 hover:shadow-sm transition-all",
-                                    selectedId === sig.id ? "border-citoyen-green shadow-sm" : "border-gray-100"
+                                    selectedId === sig.id ? "border-emerald shadow-sm" : "border-border"
                                 )}
                             >
                                 <div className="flex items-start justify-between mb-2">
-                                    <span className="text-xs font-mono text-gray-400">🚨 {sig.id}</span>
-                                    <span className="text-[11px] text-gray-400">{formatRelativeDate(sig.date)}</span>
+                                    <span className="text-xs font-mono text-text-muted">🚨 {sig.id}</span>
+                                    <span className="text-[11px] text-text-muted">{formatRelativeDate(sig.date)}</span>
                                 </div>
-                                <p className="text-sm font-medium text-gray-900 mb-1">
+                                <p className="text-sm font-medium text-text mb-1">
                                     {TYPE_ICONS[sig.type]} {sig.typeLabel}
                                 </p>
-                                <p className="text-xs text-gray-500 flex items-center gap-1">
+                                <p className="text-xs text-text-muted flex items-center gap-1">
                                     <MapPin className="w-3 h-3" /> {sig.lieu}
                                 </p>
                                 <div className="flex items-center gap-2 mt-2">
                                     {sig.photos > 0 && (
-                                        <span className="text-[11px] text-gray-400 flex items-center gap-0.5">
+                                        <span className="text-[11px] text-text-muted flex items-center gap-0.5">
                                             <Camera className="w-3 h-3" /> {sig.photos} photo{sig.photos > 1 ? "s" : ""}
                                         </span>
                                     )}
@@ -115,29 +115,29 @@ export default function SignalementsAdminPage() {
 
                 {/* Detail Panel */}
                 {selected && (
-                    <div className="flex-1 bg-white rounded-xl border border-gray-100 p-5 space-y-4">
-                        <button onClick={() => setSelectedId(null)} className="md:hidden text-sm text-citoyen-green font-medium">
+                    <div className="flex-1 bg-white rounded-xl border border-border p-5 space-y-4">
+                        <button onClick={() => setSelectedId(null)} className="md:hidden text-sm text-emerald font-medium">
                             ← Retour à la liste
                         </button>
                         <div>
-                            <span className="text-xs font-mono text-gray-400">🚨 {selected.id}</span>
-                            <h2 className="text-lg font-bold text-gray-900 mt-1">
+                            <span className="text-xs font-mono text-text-muted">🚨 {selected.id}</span>
+                            <h2 className="text-lg font-bold text-text mt-1">
                                 {TYPE_ICONS[selected.type]} {selected.typeLabel}
                             </h2>
-                            <p className="text-sm text-gray-500 mt-1 flex items-center gap-1">
+                            <p className="text-sm text-text-muted mt-1 flex items-center gap-1">
                                 <MapPin className="w-4 h-4" /> {selected.lieu}
                             </p>
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-text-muted mt-1">
                                 Soumis {formatRelativeDate(selected.date)} {selected.anonymous ? "— Anonyme" : `— par ${selected.pseudo}`}
                             </p>
                         </div>
 
                         {/* Photos placeholder */}
                         <div>
-                            <h3 className="text-sm font-semibold text-gray-700 mb-2">📷 Photos ({selected.photos})</h3>
+                            <h3 className="text-sm font-semibold text-text mb-2">📷 Photos ({selected.photos})</h3>
                             <div className="grid grid-cols-2 gap-2">
                                 {Array.from({ length: selected.photos }).map((_, i) => (
-                                    <div key={i} className="bg-gray-100 rounded-lg h-32 flex items-center justify-center text-gray-400 text-xs">
+                                    <div key={i} className="bg-bg-muted rounded-lg h-32 flex items-center justify-center text-text-muted text-xs">
                                         Photo {i + 1}
                                     </div>
                                 ))}
@@ -146,8 +146,8 @@ export default function SignalementsAdminPage() {
 
                         {/* Actions */}
                         {selected.statut === "recu" && (
-                            <div className="space-y-2 border-t border-gray-100 pt-4">
-                                <h3 className="text-sm font-semibold text-gray-700">Actions du modérateur</h3>
+                            <div className="space-y-2 border-t border-border pt-4">
+                                <h3 className="text-sm font-semibold text-text">Actions du modérateur</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     <button className="h-10 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-1.5">
                                         <CheckCircle className="w-4 h-4" /> Prendre en charge

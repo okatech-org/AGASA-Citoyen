@@ -51,16 +51,16 @@ export default function SearchBar({
 
     return (
         <div className={cn("relative", className)}>
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
             <input
                 type="text"
                 value={value}
                 onChange={handleChange}
                 placeholder={placeholder}
                 className={cn(
-                    "w-full h-12 pl-10 pr-10 rounded-xl border border-gray-200 bg-white",
-                    "text-base text-gray-900 placeholder-gray-400",
-                    "focus:outline-none focus:ring-2 focus:ring-citoyen-green focus:border-transparent",
+                    "w-full h-12 pl-10 pr-10 rounded-xl border border-border bg-white",
+                    "text-base text-text placeholder-text-muted",
+                    "focus:outline-none focus:ring-2 focus:ring-emerald focus:border-transparent",
                     "transition-all"
                 )}
             />
@@ -69,7 +69,7 @@ export default function SearchBar({
                     onClick={handleClear}
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-1 touch-feedback"
                 >
-                    <X className="w-4 h-4 text-gray-400" />
+                    <X className="w-4 h-4 text-text-muted" />
                 </button>
             )}
         </div>

@@ -1,17 +1,31 @@
 "use client";
 
-import { useAuth } from "@/hooks/useAuth";
+import { useContext, useCallback, useState, useEffect } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 
 /**
  * DemoBanner — Bannière persistante en haut de l'écran en mode démo
  * Affiche le profil actif et permet de changer ou quitter
+ *
+ * Uses useOptionalAuth internally to avoid crashing when rendered
+ * outside of AuthProvider (e.g. during SSR or in public routes).
  */
 export default function DemoBanner() {
-    const { isDemo, demoProfil, logout } = useAuth();
+    const [demoProfil, setDemoProfil] = useState<string | null>(null);
 
-    if (!isDemo) return null;
+    useEffect(() => {
+        const stored = localStorage.getItem("agasa-demo-profil");
+        setDemoProfil(stored);
+    }, []);
+
+    const logout = useCallback(() => {
+        localStorage.removeItem("agasa-session-token");
+        localStorage.removeItem("agasa-demo-profil");
+        window.location.href = "/";
+    }, []);
+
+    if (!demoProfil) return null;
 
     const profilLabels: Record<string, string> = {
         citoyen: "👤 Citoyen",

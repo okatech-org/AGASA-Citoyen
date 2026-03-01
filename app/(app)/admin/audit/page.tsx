@@ -35,10 +35,10 @@ export default function AuditPage() {
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-gray-900">Journal d&apos;audit</h1>
-                    <p className="text-sm text-gray-500">Historique des actions administratives</p>
+                    <h1 className="text-2xl font-extrabold text-text">Journal d&apos;audit</h1>
+                    <p className="text-sm text-text-muted">Historique des actions administratives</p>
                 </div>
-                <button className="flex items-center gap-1.5 text-sm bg-gray-100 text-gray-600 px-3 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                <button className="flex items-center gap-1.5 text-sm bg-bg-muted text-text-muted px-3 py-2 rounded-lg hover:bg-border transition-colors">
                     <Download className="w-4 h-4" /> Export CSV
                 </button>
             </div>
@@ -48,7 +48,7 @@ export default function AuditPage() {
                 <select
                     value={moduleFilter}
                     onChange={(e) => setModuleFilter(e.target.value)}
-                    className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white"
+                    className="h-10 px-3 rounded-lg border border-border text-sm bg-white"
                 >
                     <option value="all">Tous les modules</option>
                     <option value="auth">Authentification</option>
@@ -60,10 +60,10 @@ export default function AuditPage() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-gray-500">
+                        <thead className="bg-bg-muted text-text-muted">
                             <tr>
                                 <th className="text-left px-4 py-3 font-medium">Date</th>
                                 <th className="text-left px-4 py-3 font-medium">Utilisateur</th>
@@ -74,16 +74,16 @@ export default function AuditPage() {
                         </thead>
                         <tbody className="divide-y divide-gray-50">
                             {filtered.map((log, i) => (
-                                <tr key={i} className="hover:bg-gray-50/50">
-                                    <td className="px-4 py-3 text-xs text-gray-400 whitespace-nowrap">{formatDate(log.date)}</td>
-                                    <td className="px-4 py-3 font-medium text-gray-900 text-xs">{log.utilisateur}</td>
-                                    <td className="px-4 py-3 text-gray-700">{log.action}</td>
+                                <tr key={i} className="hover:bg-bg-muted/50">
+                                    <td className="px-4 py-3 text-xs text-text-muted whitespace-nowrap">{formatDate(log.date)}</td>
+                                    <td className="px-4 py-3 font-medium text-text text-xs">{log.utilisateur}</td>
+                                    <td className="px-4 py-3 text-text">{log.action}</td>
                                     <td className="px-4 py-3 text-center">
                                         <span className={cn("text-[10px] font-semibold px-2 py-0.5 rounded-full", MODULE_COLORS[log.module])}>
                                             {log.module.toUpperCase()}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-gray-500 text-xs hidden md:table-cell max-w-[250px] truncate">{log.details}</td>
+                                    <td className="px-4 py-3 text-text-muted text-xs hidden md:table-cell max-w-[250px] truncate">{log.details}</td>
                                 </tr>
                             ))}
                         </tbody>

@@ -13,7 +13,7 @@ export interface SmileyInfo {
 export const SMILEY_DATA: Record<number, SmileyInfo> = {
     5: {
         score: 5,
-        couleur: "#1B5E20",
+        couleur: "#059669",
         texte: "Excellent",
         description: "Hygiène exemplaire",
         emoji: "😊",
@@ -22,7 +22,7 @@ export const SMILEY_DATA: Record<number, SmileyInfo> = {
     },
     4: {
         score: 4,
-        couleur: "#43A047",
+        couleur: "#10b981",
         texte: "Bon",
         description: "Améliorations mineures",
         emoji: "🙂",
@@ -40,7 +40,7 @@ export const SMILEY_DATA: Record<number, SmileyInfo> = {
     },
     2: {
         score: 2,
-        couleur: "#EF6C00",
+        couleur: "#f59e0b",
         texte: "Insuffisant",
         description: "À éviter",
         emoji: "😟",
@@ -49,7 +49,7 @@ export const SMILEY_DATA: Record<number, SmileyInfo> = {
     },
     1: {
         score: 1,
-        couleur: "#C62828",
+        couleur: "#f43f5e",
         texte: "Mauvais",
         description: "Risque sanitaire",
         emoji: "😡",

@@ -30,8 +30,8 @@ export default function ManuelsAdminPage() {
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-gray-900">Manuels éducatifs</h1>
-                    <p className="text-sm text-gray-500">{DEMO_MANUELS.filter(m => m.actif).length} fiches publiées</p>
+                    <h1 className="text-2xl font-extrabold text-text">Manuels éducatifs</h1>
+                    <p className="text-sm text-text-muted">{DEMO_MANUELS.filter(m => m.actif).length} fiches publiées</p>
                 </div>
                 <button
                     onClick={() => setShowForm(!showForm)}
@@ -43,21 +43,21 @@ export default function ManuelsAdminPage() {
 
             {/* Create Form */}
             {showForm && (
-                <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-3">
-                    <h3 className="font-bold text-sm text-gray-900">Créer une fiche éducative</h3>
-                    <input placeholder="Titre" className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm" />
-                    <input placeholder="Sous-titre (optionnel)" className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm" />
+                <div className="bg-white rounded-xl border border-border p-4 space-y-3">
+                    <h3 className="font-bold text-sm text-text">Créer une fiche éducative</h3>
+                    <input placeholder="Titre" className="w-full h-10 px-3 rounded-lg border border-border text-sm" />
+                    <input placeholder="Sous-titre (optionnel)" className="w-full h-10 px-3 rounded-lg border border-border text-sm" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <select className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-white">
+                        <select className="h-10 px-3 rounded-lg border border-border text-sm bg-white">
                             <option value="">Catégorie...</option>
                             {CATEGORIES.map((c) => (
                                 <option key={c.value} value={c.value}>{c.label}</option>
                             ))}
                         </select>
-                        <input placeholder="Ordre d'affichage" type="number" className="h-10 px-3 rounded-lg border border-gray-200 text-sm" />
+                        <input placeholder="Ordre d'affichage" type="number" className="h-10 px-3 rounded-lg border border-border text-sm" />
                     </div>
-                    <textarea placeholder="Contenu (Markdown)" rows={8} className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm font-mono resize-none" />
-                    <input placeholder="URL vidéo YouTube (optionnel)" className="w-full h-10 px-3 rounded-lg border border-gray-200 text-sm" />
+                    <textarea placeholder="Contenu (Markdown)" rows={8} className="w-full px-3 py-2 rounded-lg border border-border text-sm font-mono resize-none" />
+                    <input placeholder="URL vidéo YouTube (optionnel)" className="w-full h-10 px-3 rounded-lg border border-border text-sm" />
                     <div className="flex gap-2">
                         <CitizenButton size="sm">Publier la fiche</CitizenButton>
                         <CitizenButton size="sm" variant="ghost" onClick={() => setShowForm(false)}>Annuler</CitizenButton>
@@ -66,10 +66,10 @@ export default function ManuelsAdminPage() {
             )}
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-gray-500">
+                        <thead className="bg-bg-muted text-text-muted">
                             <tr>
                                 <th className="text-center px-3 py-3 font-medium w-12">#</th>
                                 <th className="text-left px-4 py-3 font-medium">Titre</th>
@@ -83,19 +83,19 @@ export default function ManuelsAdminPage() {
                             {DEMO_MANUELS.map((m) => {
                                 const cat = CATEGORIES.find((c) => c.value === m.categorie);
                                 return (
-                                    <tr key={m.id} className="hover:bg-gray-50/50">
-                                        <td className="text-center px-3 py-3 text-gray-400 text-xs">{m.ordre}</td>
-                                        <td className="px-4 py-3 font-medium text-gray-900">{m.titre}</td>
-                                        <td className="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">{cat?.label}</td>
+                                    <tr key={m.id} className="hover:bg-bg-muted/50">
+                                        <td className="text-center px-3 py-3 text-text-muted text-xs">{m.ordre}</td>
+                                        <td className="px-4 py-3 font-medium text-text">{m.titre}</td>
+                                        <td className="px-4 py-3 text-sm text-text-muted hidden md:table-cell">{cat?.label}</td>
                                         <td className="px-4 py-3 text-center">
                                             {m.actif ? (
                                                 <Eye className="w-4 h-4 text-green-500 mx-auto" />
                                             ) : (
-                                                <EyeOff className="w-4 h-4 text-gray-400 mx-auto" />
+                                                <EyeOff className="w-4 h-4 text-text-muted mx-auto" />
                                             )}
                                         </td>
-                                        <td className="px-4 py-3 text-center text-gray-500 hidden sm:table-cell">{m.vues}</td>
-                                        <td className="px-4 py-3 text-right text-xs text-gray-400">{formatDate(m.modifieLe)}</td>
+                                        <td className="px-4 py-3 text-center text-text-muted hidden sm:table-cell">{m.vues}</td>
+                                        <td className="px-4 py-3 text-right text-xs text-text-muted">{formatDate(m.modifieLe)}</td>
                                     </tr>
                                 );
                             })}

@@ -69,15 +69,15 @@ const KPI_DATA = [
 function TrendIcon({ trend }: { trend: "up" | "down" | "neutral" }) {
     if (trend === "up") return <TrendingUp className="w-4 h-4 text-green-500" />;
     if (trend === "down") return <TrendingDown className="w-4 h-4 text-red-500" />;
-    return <Minus className="w-4 h-4 text-gray-400" />;
+    return <Minus className="w-4 h-4 text-text-muted" />;
 }
 
 export default function AdminDashboard() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-2xl font-extrabold text-gray-900">Dashboard</h1>
-                <p className="text-sm text-gray-500">Vue d&apos;ensemble AGASA-Citoyen</p>
+                <h1 className="text-2xl font-extrabold text-text">Dashboard</h1>
+                <p className="text-sm text-text-muted">Vue d&apos;ensemble AGASA-Citoyen</p>
             </div>
 
             {/* KPI Cards */}
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
                     const Card = (
                         <div
                             key={kpi.label}
-                            className="bg-white rounded-xl border border-gray-100 p-4 hover:shadow-sm transition-shadow relative"
+                            className="bg-white rounded-xl border border-border p-4 hover:shadow-sm transition-shadow relative"
                         >
                             {kpi.badge && (
                                 <span className="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -99,9 +99,9 @@ export default function AdminDashboard() {
                                 </div>
                                 <TrendIcon trend={kpi.trend} />
                             </div>
-                            <p className="text-2xl font-extrabold text-gray-900">{kpi.value}</p>
-                            <p className="text-xs text-gray-500 mt-0.5">{kpi.label}</p>
-                            <p className="text-[11px] text-gray-400 mt-1">{kpi.sub}</p>
+                            <p className="text-2xl font-extrabold text-text">{kpi.value}</p>
+                            <p className="text-xs text-text-muted mt-0.5">{kpi.label}</p>
+                            <p className="text-[11px] text-text-muted mt-1">{kpi.sub}</p>
                         </div>
                     );
 
@@ -115,26 +115,26 @@ export default function AdminDashboard() {
 
             {/* Charts Placeholder */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl border border-gray-100 p-5">
-                    <h3 className="font-bold text-gray-900 text-sm mb-4">📈 Scans QR par jour (30 jours)</h3>
-                    <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center">
+                <div className="bg-white rounded-xl border border-border p-5">
+                    <h3 className="font-bold text-text text-sm mb-4">📈 Scans QR par jour (30 jours)</h3>
+                    <div className="h-48 bg-bg-muted rounded-lg flex items-center justify-center">
                         <div className="text-center">
                             <div className="flex items-end gap-1 justify-center mb-2">
                                 {[30, 45, 38, 52, 48, 61, 55, 70, 65, 78, 72, 85, 80, 92, 88].map((h, i) => (
                                     <div
                                         key={i}
-                                        className="w-3 bg-citoyen-green/70 rounded-t"
+                                        className="w-3 bg-emerald/70 rounded-t"
                                         style={{ height: `${h * 1.5}px` }}
                                     />
                                 ))}
                             </div>
-                            <p className="text-xs text-gray-400">Tendance d&apos;adoption — données démo</p>
+                            <p className="text-xs text-text-muted">Tendance d&apos;adoption — données démo</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-xl border border-gray-100 p-5">
-                    <h3 className="font-bold text-gray-900 text-sm mb-4">🚨 Signalements par type</h3>
+                <div className="bg-white rounded-xl border border-border p-5">
+                    <h3 className="font-bold text-text text-sm mb-4">🚨 Signalements par type</h3>
                     <div className="h-48 flex items-center justify-center">
                         <div className="space-y-2 w-full max-w-xs">
                             {[
@@ -145,14 +145,14 @@ export default function AdminDashboard() {
                                 { label: "Autres", pct: 10, color: "bg-gray-400" },
                             ].map((item) => (
                                 <div key={item.label} className="flex items-center gap-2 text-xs">
-                                    <span className="w-20 text-gray-600 text-right truncate">{item.label}</span>
-                                    <div className="flex-1 h-4 bg-gray-100 rounded-full overflow-hidden">
+                                    <span className="w-20 text-text-muted text-right truncate">{item.label}</span>
+                                    <div className="flex-1 h-4 bg-bg-muted rounded-full overflow-hidden">
                                         <div
                                             className={`h-full ${item.color} rounded-full`}
                                             style={{ width: `${item.pct}%` }}
                                         />
                                     </div>
-                                    <span className="w-8 text-gray-500">{item.pct}%</span>
+                                    <span className="w-8 text-text-muted">{item.pct}%</span>
                                 </div>
                             ))}
                         </div>
@@ -161,8 +161,8 @@ export default function AdminDashboard() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-xl border border-gray-100 p-5">
-                <h3 className="font-bold text-gray-900 text-sm mb-3">⚡ Actions rapides</h3>
+            <div className="bg-white rounded-xl border border-border p-5">
+                <h3 className="font-bold text-text text-sm mb-3">⚡ Actions rapides</h3>
                 <div className="flex flex-wrap gap-2">
                     <Link href="/admin/signalements" className="text-xs bg-red-50 text-red-700 px-3 py-1.5 rounded-lg hover:bg-red-100 transition-colors">
                         🚨 Traiter les signalements (12)

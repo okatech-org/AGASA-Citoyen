@@ -47,7 +47,7 @@ const SMILEY_COLORS: Record<number, { bg: string; text: string; ring: string; gr
     3: { bg: "bg-yellow-500", text: "text-white", ring: "ring-yellow-200", gradient: "from-yellow-400 to-yellow-600" },
     2: { bg: "bg-orange-500", text: "text-white", ring: "ring-orange-200", gradient: "from-orange-400 to-orange-600" },
     1: { bg: "bg-red-600", text: "text-white", ring: "ring-red-200", gradient: "from-red-500 to-red-700" },
-    0: { bg: "bg-gray-500", text: "text-white", ring: "ring-gray-200", gradient: "from-gray-400 to-gray-600" },
+    0: { bg: "bg-bg-muted0", text: "text-white", ring: "ring-gray-200", gradient: "from-gray-400 to-gray-600" },
 };
 
 const SMILEY_LABELS: Record<number, string> = {
@@ -84,19 +84,19 @@ export default function CartePage() {
     return (
         <div className="min-h-dvh bg-white pb-20 flex flex-col">
             {/* Search + Filters */}
-            <div className="sticky top-0 bg-white/90 backdrop-blur-xl z-20 border-b border-gray-100/50">
+            <div className="sticky top-0 bg-white/90 backdrop-blur-xl z-20 border-b border-border/50">
                 {/* Search */}
                 <div className="px-4 pt-3 pb-2">
                     <div className="relative">
-                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
                         <input
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Rechercher un restaurant, une boucherie..."
-                            className="w-full h-11 pl-10 pr-10 rounded-xl bg-gray-50 text-sm text-gray-800 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-citoyen-green/50 focus:border-citoyen-green transition-all"
+                            className="w-full h-11 pl-10 pr-10 rounded-xl bg-bg-muted text-sm text-text placeholder-text-muted border border-border focus:outline-none focus:ring-2 focus:ring-emerald/50 focus:border-emerald transition-all"
                         />
                         {searchQuery && (
-                            <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
+                            <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-muted transition-colors">
                                 <X className="w-4 h-4" />
                             </button>
                         )}
@@ -113,8 +113,8 @@ export default function CartePage() {
                                 className={cn(
                                     "flex items-center gap-1 px-3.5 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200",
                                     selectedCategory === cat.id
-                                        ? "bg-citoyen-green text-white shadow-sm"
-                                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                        ? "bg-emerald text-white shadow-sm"
+                                        : "bg-bg-muted text-text-muted hover:bg-border"
                                 )}
                             >
                                 {cat.emoji} {cat.label}
@@ -129,12 +129,12 @@ export default function CartePage() {
                         onClick={() => setSmiley4Plus(!smiley4Plus)}
                         className={cn(
                             "flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200",
-                            smiley4Plus ? "bg-yellow-100 text-yellow-700 ring-1 ring-yellow-300 shadow-sm" : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                            smiley4Plus ? "bg-yellow-100 text-yellow-700 ring-1 ring-yellow-300 shadow-sm" : "bg-bg-muted text-text-muted hover:bg-border"
                         )}
                     >
                         ⭐ 4+ uniquement
                     </button>
-                    <div className="w-px h-4 bg-gray-200 mx-0.5" />
+                    <div className="w-px h-4 bg-border mx-0.5" />
                     {DISTANCES.map((d) => (
                         <button
                             key={d.value}
@@ -142,8 +142,8 @@ export default function CartePage() {
                             className={cn(
                                 "px-2.5 py-1.5 rounded-full text-[11px] font-medium transition-all duration-200",
                                 selectedDistance === d.value
-                                    ? "bg-citoyen-green/10 text-citoyen-green ring-1 ring-citoyen-green/30"
-                                    : "bg-gray-50 text-gray-400 hover:bg-gray-100"
+                                    ? "bg-emerald/10 text-emerald ring-1 ring-emerald/30"
+                                    : "bg-bg-muted text-text-muted hover:bg-bg-muted"
                             )}
                         >
                             {d.label}
@@ -167,7 +167,7 @@ export default function CartePage() {
                 </div>
 
                 {/* OSM attribution */}
-                <div className="absolute bottom-1 right-1 bg-white/80 px-1.5 py-0.5 rounded text-[8px] text-gray-500 z-10">
+                <div className="absolute bottom-1 right-1 bg-white/80 px-1.5 py-0.5 rounded text-[8px] text-text-muted z-10">
                     © OpenStreetMap
                 </div>
 
@@ -206,16 +206,16 @@ export default function CartePage() {
                 })}
 
                 {/* Recenter button */}
-                <button className="absolute bottom-4 right-4 z-10 w-11 h-11 bg-white rounded-xl shadow-lg flex items-center justify-center text-citoyen-green hover:bg-gray-50 hover:shadow-xl transition-all">
+                <button className="absolute bottom-4 right-4 z-10 w-11 h-11 bg-white rounded-xl shadow-lg flex items-center justify-center text-emerald hover:bg-bg-muted hover:shadow-xl transition-all">
                     <Navigation className="w-5 h-5" />
                 </button>
 
                 {/* Result count */}
-                <div className="absolute top-3 left-3 z-10 glass-card px-3.5 py-2 shadow-sm text-xs font-semibold text-gray-700 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-citoyen-green animate-pulse" />
+                <div className="absolute top-3 left-3 z-10 glass-card px-3.5 py-2 shadow-sm text-xs font-semibold text-text flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
                     {filteredEtabs.length} établissement{filteredEtabs.length > 1 ? "s" : ""}
                     {activeFilterCount > 0 && (
-                        <span className="bg-citoyen-green text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full ml-1">
+                        <span className="bg-emerald text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full ml-1">
                             {activeFilterCount} filtre{activeFilterCount > 1 ? "s" : ""}
                         </span>
                     )}
@@ -225,7 +225,7 @@ export default function CartePage() {
             {/* Selected establishment popup */}
             {selected && (
                 <div className="fixed bottom-24 left-4 right-4 z-30 glass-card shadow-2xl p-4 animate-slide-up border border-white/40">
-                    <button onClick={() => setSelectedEtab(null)} className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100">
+                    <button onClick={() => setSelectedEtab(null)} className="absolute top-3 right-3 text-text-muted hover:text-text-muted transition-colors p-1 rounded-lg hover:bg-bg-muted">
                         <X className="w-4 h-4" />
                     </button>
 
@@ -238,19 +238,19 @@ export default function CartePage() {
                             )}>
                                 {selected.smiley}
                             </div>
-                            <span className="text-[10px] font-semibold text-gray-500">
+                            <span className="text-[10px] font-semibold text-text-muted">
                                 {SMILEY_LABELS[selected.smiley]}
                             </span>
                         </div>
 
                         <div className="flex-1 min-w-0">
-                            <h3 className="text-sm font-bold text-gray-900 truncate">{selected.nom}</h3>
-                            <p className="text-xs text-gray-500 mt-0.5">{selected.adresse}, {selected.ville}</p>
+                            <h3 className="text-sm font-bold text-text truncate">{selected.nom}</h3>
+                            <p className="text-xs text-text-muted mt-0.5">{selected.adresse}, {selected.ville}</p>
                             <div className="flex items-center gap-2 mt-2 flex-wrap">
                                 <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-medium", AGREMENT_BADGE[selected.agrement].color)}>
                                     {AGREMENT_BADGE[selected.agrement].label}
                                 </span>
-                                <span className="text-[10px] text-gray-400 flex items-center gap-1">📅 {selected.derniereInspection}</span>
+                                <span className="text-[10px] text-text-muted flex items-center gap-1">📅 {selected.derniereInspection}</span>
                             </div>
                         </div>
                     </div>

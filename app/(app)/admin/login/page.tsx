@@ -31,21 +31,21 @@ export default function AdminLoginPage() {
     };
 
     return (
-        <div className="min-h-dvh bg-gray-50 flex flex-col items-center justify-center px-4">
+        <div className="min-h-dvh bg-bg-muted flex flex-col items-center justify-center px-4">
             <div className="w-full max-w-sm">
                 {/* Logo */}
                 <div className="text-center mb-8">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-citoyen-green flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald flex items-center justify-center">
                         <Shield className="w-8 h-8 text-white" />
                     </div>
-                    <h1 className="text-xl font-bold text-gray-900">Administration AGASA</h1>
-                    <p className="text-sm text-gray-500 mt-1">Espace réservé aux administrateurs</p>
+                    <h1 className="text-xl font-bold text-text">Administration AGASA</h1>
+                    <p className="text-sm text-text-muted mt-1">Espace réservé aux administrateurs</p>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleLogin} className="space-y-4 bg-white rounded-2xl p-6 shadow-sm">
                     <div>
-                        <label htmlFor="email" className="text-sm font-medium text-gray-700 mb-1 block">
+                        <label htmlFor="email" className="text-sm font-medium text-text mb-1 block">
                             Email
                         </label>
                         <input
@@ -54,13 +54,13 @@ export default function AdminLoginPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="admin@agasa.ga"
-                            className="w-full h-12 px-4 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-citoyen-green"
+                            className="w-full h-12 px-4 rounded-xl border border-border text-base focus:outline-none focus:ring-2 focus:ring-emerald"
                             autoFocus
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="text-sm font-medium text-gray-700 mb-1 block">
+                        <label htmlFor="password" className="text-sm font-medium text-text mb-1 block">
                             Mot de passe
                         </label>
                         <div className="relative">
@@ -70,12 +70,12 @@ export default function AdminLoginPage() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full h-12 px-4 pr-12 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-citoyen-green"
+                                className="w-full h-12 px-4 pr-12 rounded-xl border border-border text-base focus:outline-none focus:ring-2 focus:ring-emerald"
                             />
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-text-muted"
                             >
                                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                             </button>
@@ -83,7 +83,7 @@ export default function AdminLoginPage() {
                     </div>
 
                     {error && (
-                        <p className="text-sm text-citoyen-red bg-red-50 p-3 rounded-xl">{error}</p>
+                        <p className="text-sm text-rose bg-red-50 p-3 rounded-xl">{error}</p>
                     )}
 
                     <CitizenButton type="submit" disabled={loading || !email || !password}>
@@ -91,7 +91,7 @@ export default function AdminLoginPage() {
                     </CitizenButton>
                 </form>
 
-                <p className="text-center text-xs text-gray-400 mt-4">
+                <p className="text-center text-xs text-text-muted mt-4">
                     Accès restreint — Contactez l&apos;administrateur système pour obtenir un accès.
                 </p>
             </div>

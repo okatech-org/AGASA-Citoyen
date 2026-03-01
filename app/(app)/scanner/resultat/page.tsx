@@ -65,14 +65,14 @@ const DEMO_DB: Record<string, {
 
 const MONTHS = ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"];
 const SCORE_COLORS: Record<number, string> = {
-    5: "#2E7D32", 4: "#43A047", 3: "#F9A825", 2: "#EF6C00", 1: "#C62828", 0: "#757575",
+    5: "#059669", 4: "#10b981", 3: "#F9A825", 2: "#f59e0b", 1: "#f43f5e", 0: "#757575",
 };
 
 const AGREMENT_DISPLAY: Record<string, { icon: string; text: string; color: string }> = {
     valide: { icon: "✅", text: "VALIDE", color: "text-green-600" },
     expire: { icon: "⚠️", text: "EXPIRÉ", color: "text-orange-600" },
     suspendu: { icon: "❌", text: "SUSPENDU", color: "text-red-600" },
-    aucun: { icon: "⛔", text: "AUCUN", color: "text-gray-600" },
+    aucun: { icon: "⛔", text: "AUCUN", color: "text-text-muted" },
 };
 
 function ResultContent() {
@@ -99,17 +99,17 @@ function ResultContent() {
     if (!etab) {
         return (
             <div className="max-w-md mx-auto px-4 py-12 text-center">
-                <div className="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-20 h-20 mx-auto bg-bg-muted rounded-full flex items-center justify-center mb-4">
                     <span className="text-3xl">❓</span>
                 </div>
-                <h1 className="text-xl font-bold text-gray-900 mb-2">QR code non reconnu</h1>
-                <p className="text-sm text-gray-500 mb-1">Ce QR code ne fait pas partie du registre AGASA.</p>
-                <p className="text-xs text-gray-400 mb-6">Il peut s&apos;agir d&apos;un QR code obsolète ou falsifié.</p>
+                <h1 className="text-xl font-bold text-text mb-2">QR code non reconnu</h1>
+                <p className="text-sm text-text-muted mb-1">Ce QR code ne fait pas partie du registre AGASA.</p>
+                <p className="text-xs text-text-muted mb-6">Il peut s&apos;agir d&apos;un QR code obsolète ou falsifié.</p>
                 <div className="space-y-2">
-                    <Link href="/scanner" className="block w-full bg-citoyen-green text-white py-3 rounded-xl text-sm font-semibold hover:bg-green-800 transition-colors">
+                    <Link href="/scanner" className="block w-full bg-emerald text-white py-3 rounded-xl text-sm font-semibold hover:bg-green-800 transition-colors">
                         📷 Scanner un autre QR
                     </Link>
-                    <Link href="/scanner" className="block w-full bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors">
+                    <Link href="/scanner" className="block w-full bg-bg-muted text-text-muted py-3 rounded-xl text-sm font-medium hover:bg-border transition-colors">
                         🔍 Rechercher par nom
                     </Link>
                 </div>
@@ -122,7 +122,7 @@ function ResultContent() {
     return (
         <div className="max-w-md mx-auto px-4 pb-8">
             {/* Back */}
-            <Link href="/scanner" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 py-3 transition-colors">
+            <Link href="/scanner" className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-text py-3 transition-colors">
                 <ArrowLeft className="w-4 h-4" /> Retour au scanner
             </Link>
 
@@ -131,19 +131,19 @@ function ResultContent() {
                 <SmileyDisplay score={etab.smiley} size="xl" animate />
             </div>
 
-            <hr className="border-gray-100 mb-4" />
+            <hr className="border-border mb-4" />
 
             {/* Établissement Info */}
             <div className="space-y-2 mb-4">
-                <h1 className="text-xl font-bold text-gray-900">🏢 {etab.nom}</h1>
-                <p className="text-sm text-gray-500 flex items-center gap-1.5">
+                <h1 className="text-xl font-bold text-text">🏢 {etab.nom}</h1>
+                <p className="text-sm text-text-muted flex items-center gap-1.5">
                     <MapPin className="w-4 h-4 flex-shrink-0" /> {etab.adresse}, {etab.ville} ({etab.province})
                 </p>
-                <p className="text-sm text-gray-500">📋 {etab.categorie}</p>
+                <p className="text-sm text-text-muted">📋 {etab.categorie}</p>
             </div>
 
             {/* Agrément */}
-            <div className="bg-gray-50 rounded-xl p-3 mb-3">
+            <div className="bg-bg-muted rounded-xl p-3 mb-3">
                 <p className={cn("text-sm font-semibold flex items-center gap-1.5", agrStatus.color)}>
                     <Shield className="w-4 h-4" />
                     {agrStatus.icon} Agrément : {agrStatus.text}
@@ -152,16 +152,16 @@ function ResultContent() {
             </div>
 
             {/* Dernière inspection */}
-            <div className="bg-gray-50 rounded-xl p-3 mb-5">
-                <p className="text-sm text-gray-600 flex items-center gap-1.5">
+            <div className="bg-bg-muted rounded-xl p-3 mb-5">
+                <p className="text-sm text-text-muted flex items-center gap-1.5">
                     <Calendar className="w-4 h-4" />
                     📅 Dernière inspection : {formatDate(etab.derniereInspection)}
                 </p>
             </div>
 
             {/* Historique Sparkline */}
-            <div className="bg-white rounded-xl border border-gray-100 p-4 mb-5">
-                <h3 className="text-sm font-bold text-gray-900 mb-3">📈 Historique de conformité (12 mois)</h3>
+            <div className="bg-white rounded-xl border border-border p-4 mb-5">
+                <h3 className="text-sm font-bold text-text mb-3">📈 Historique de conformité (12 mois)</h3>
                 <div className="flex items-end gap-1">
                     {etab.historique.map((score, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-1">
@@ -173,11 +173,11 @@ function ResultContent() {
                                     opacity: 0.7 + (i / 12) * 0.3,
                                 }}
                             />
-                            <span className="text-[9px] text-gray-400">{MONTHS[i]}</span>
+                            <span className="text-[9px] text-text-muted">{MONTHS[i]}</span>
                         </div>
                     ))}
                 </div>
-                <div className="flex items-center justify-between mt-2 text-[10px] text-gray-400">
+                <div className="flex items-center justify-between mt-2 text-[10px] text-text-muted">
                     <span>
                         Tendance : {etab.historique[11] > etab.historique[0] ? "↑ Amélioration" : etab.historique[11] < etab.historique[0] ? "↓ Dégradation" : "→ Stable"}
                     </span>
@@ -189,7 +189,7 @@ function ResultContent() {
             <div className="space-y-2">
                 <Link
                     href="/carte"
-                    className="flex items-center justify-center gap-2 w-full h-12 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors"
+                    className="flex items-center justify-center gap-2 w-full h-12 bg-bg-muted text-text rounded-xl text-sm font-medium hover:bg-border transition-colors"
                 >
                     <Map className="w-4 h-4" /> 🗺️ Voir sur la carte
                 </Link>
@@ -201,7 +201,7 @@ function ResultContent() {
                 </Link>
                 <button
                     onClick={handleShare}
-                    className="flex items-center justify-center gap-2 w-full h-12 bg-citoyen-green/10 text-citoyen-green rounded-xl text-sm font-semibold hover:bg-citoyen-green/20 transition-colors"
+                    className="flex items-center justify-center gap-2 w-full h-12 bg-emerald/10 text-emerald rounded-xl text-sm font-semibold hover:bg-emerald/20 transition-colors"
                 >
                     <Share2 className="w-4 h-4" /> 📤 Partager ce résultat
                 </button>

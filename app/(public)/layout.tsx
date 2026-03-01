@@ -7,10 +7,10 @@ export default function PublicLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="public-main">
+        <>
             <PublicNav />
             <main>{children}</main>
             <Footer />
-        </div>
+        </>
     );
 }

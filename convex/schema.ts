@@ -124,13 +124,42 @@ export default defineSchema({
         etablissementId: v.optional(v.id("etablissements")),
         nomEtablissement: v.optional(v.string()),
 
-        // Type d'infraction
+        // Catégorie de signalement
+        categorieSignalement: v.union(
+            v.literal("consommateur"),
+            v.literal("intoxication_alimentaire"),
+            v.literal("utilisation_pesticides"),
+            v.literal("nutrivigilance")
+        ),
+
+        // Type d'infraction (spécifique à la catégorie)
         typeInfraction: v.union(
+            // Consommateur
             v.literal("produits_perimes"),
             v.literal("insalubrite"),
             v.literal("absence_agrement"),
             v.literal("produits_suspects"),
             v.literal("chaine_froid"),
+            v.literal("emballage_defectueux"),
+            v.literal("etiquetage_manquant"),
+            // Intoxication Alimentaire
+            v.literal("nausees_vomissements"),
+            v.literal("diarrhee"),
+            v.literal("allergie"),
+            v.literal("intoxication_chimique"),
+            v.literal("autre_intoxication"),
+            // Utilisation de pesticides
+            v.literal("irritation_cutanee"),
+            v.literal("troubles_respiratoires"),
+            v.literal("intoxication_pesticide"),
+            v.literal("contamination_eau"),
+            v.literal("autre_pesticide"),
+            // Nutrivigilance
+            v.literal("complement_alimentaire"),
+            v.literal("produit_enrichi"),
+            v.literal("nouveau_aliment"),
+            v.literal("autre_nutrivigilance"),
+            // Général
             v.literal("autre")
         ),
         typeInfractionLabel: v.string(),
@@ -176,7 +205,8 @@ export default defineSchema({
         .index("by_statut", ["statut"])
         .index("by_province", ["province"])
         .index("by_etablissement", ["etablissementId"])
-        .index("by_date", ["dateSoumission"]),
+        .index("by_date", ["dateSoumission"])
+        .index("by_categorie", ["categorieSignalement"]),
 
     // --- ALERTES RAPPELS PRODUITS ---
     alertesRappels: defineTable({
@@ -224,6 +254,25 @@ export default defineSchema({
         .index("by_statut", ["statut"])
         .index("by_urgence", ["urgence"])
         .index("by_date", ["dateEmission"]),
+
+    // --- MESSAGES CONTACT PUBLIC ---
+    messagesContact: defineTable({
+        nom: v.optional(v.string()),
+        contact: v.string(),
+        sujet: v.union(
+            v.literal("question"),
+            v.literal("suggestion"),
+            v.literal("support"),
+            v.literal("autre")
+        ),
+        message: v.string(),
+        statut: v.union(v.literal("nouveau"), v.literal("traite")),
+        creeLe: v.number(),
+        traiteLe: v.optional(v.number()),
+        source: v.literal("public_contact"),
+    })
+        .index("by_date", ["creeLe"])
+        .index("by_statut", ["statut"]),
 
     // --- MANUELS ÉDUCATIFS ---
     manuelsEducatifs: defineTable({

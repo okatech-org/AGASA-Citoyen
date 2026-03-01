@@ -109,8 +109,8 @@ export default function AlerteDetailPage({ params }: { params: Promise<{ id: str
             <div className="min-h-dvh bg-white flex items-center justify-center">
                 <div className="text-center">
                     <p className="text-4xl mb-3">❓</p>
-                    <p className="text-gray-600 font-semibold">Alerte introuvable</p>
-                    <Link href="/alertes" className="text-sm text-citoyen-green mt-2 block">← Retour aux alertes</Link>
+                    <p className="text-text-muted font-semibold">Alerte introuvable</p>
+                    <Link href="/alertes" className="text-sm text-emerald mt-2 block">← Retour aux alertes</Link>
                 </div>
             </div>
         );
@@ -121,9 +121,9 @@ export default function AlerteDetailPage({ params }: { params: Promise<{ id: str
     return (
         <div className="min-h-dvh bg-white pb-24">
             {/* Header */}
-            <div className="bg-white border-b border-gray-100 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
-                <Link href="/alertes" className="text-gray-500"><ArrowLeft className="w-5 h-5" /></Link>
-                <h1 className="text-sm font-bold text-gray-900 truncate">🔔 Détail alerte</h1>
+            <div className="bg-white border-b border-border px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
+                <Link href="/alertes" className="text-text-muted"><ArrowLeft className="w-5 h-5" /></Link>
+                <h1 className="text-sm font-bold text-text truncate">🔔 Détail alerte</h1>
             </div>
 
             <div className="px-4 py-4 space-y-4 max-w-lg mx-auto">
@@ -133,18 +133,18 @@ export default function AlerteDetailPage({ params }: { params: Promise<{ id: str
                 </div>
 
                 {/* Product info */}
-                <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-2">
-                    <h2 className="text-lg font-bold text-gray-900">⚠️ {alerte.titre}</h2>
-                    <div className="flex items-center gap-3 text-sm text-gray-500">
-                        <span>Lot : <strong className="text-gray-700">{alerte.lot}</strong></span>
-                        <span>Marque : <strong className="text-gray-700">{alerte.marque}</strong></span>
+                <div className="bg-white rounded-xl border border-border p-4 space-y-2">
+                    <h2 className="text-lg font-bold text-text">⚠️ {alerte.titre}</h2>
+                    <div className="flex items-center gap-3 text-sm text-text-muted">
+                        <span>Lot : <strong className="text-text">{alerte.lot}</strong></span>
+                        <span>Marque : <strong className="text-text">{alerte.marque}</strong></span>
                     </div>
                 </div>
 
                 {/* Motif */}
-                <div className="bg-gray-50 rounded-xl p-4">
-                    <h3 className="text-sm font-bold text-gray-800 mb-1">MOTIF :</h3>
-                    <p className="text-sm text-gray-600">{alerte.motifDetail}</p>
+                <div className="bg-bg-muted rounded-xl p-4">
+                    <h3 className="text-sm font-bold text-text mb-1">MOTIF :</h3>
+                    <p className="text-sm text-text-muted">{alerte.motifDetail}</p>
                 </div>
 
                 {/* Que faire */}
@@ -160,7 +160,7 @@ export default function AlerteDetailPage({ params }: { params: Promise<{ id: str
                 </div>
 
                 {/* Metadata */}
-                <div className="bg-white rounded-xl border border-gray-100 p-4 space-y-2 text-sm text-gray-600">
+                <div className="bg-white rounded-xl border border-border p-4 space-y-2 text-sm text-text-muted">
                     <p>📍 Zone concernée : <strong>{alerte.zone}</strong></p>
                     <p>📅 Date d&apos;émission : <strong>{alerte.dateEmission}</strong></p>
                     <p>Source : <strong>{alerte.source}</strong></p>
@@ -177,7 +177,7 @@ export default function AlerteDetailPage({ params }: { params: Promise<{ id: str
                 {/* Share */}
                 <button
                     onClick={handleShare}
-                    className="flex items-center justify-center gap-2 w-full h-12 bg-citoyen-green/10 text-citoyen-green rounded-xl text-sm font-semibold hover:bg-citoyen-green/20 transition-colors"
+                    className="flex items-center justify-center gap-2 w-full h-12 bg-emerald/10 text-emerald rounded-xl text-sm font-semibold hover:bg-emerald/20 transition-colors"
                 >
                     <Share2 className="w-4 h-4" /> 📤 Partager cette alerte
                 </button>

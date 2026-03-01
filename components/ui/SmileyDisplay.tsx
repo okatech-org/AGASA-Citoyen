@@ -17,12 +17,12 @@ export interface SmileyConfig {
 }
 
 export const SMILEY_LEVELS: Record<number, SmileyConfig> = {
-    5: { score: 5, emoji: "😄", label: "Excellent", color: "#2E7D32", bgColor: "bg-green-600", stars: "⭐⭐⭐⭐⭐" },
-    4: { score: 4, emoji: "🙂", label: "Bon", color: "#43A047", bgColor: "bg-green-500", stars: "⭐⭐⭐⭐" },
+    5: { score: 5, emoji: "😄", label: "Excellent", color: "#059669", bgColor: "bg-green-600", stars: "⭐⭐⭐⭐⭐" },
+    4: { score: 4, emoji: "🙂", label: "Bon", color: "#10b981", bgColor: "bg-green-500", stars: "⭐⭐⭐⭐" },
     3: { score: 3, emoji: "😐", label: "Acceptable", color: "#F9A825", bgColor: "bg-yellow-500", stars: "⭐⭐⭐" },
-    2: { score: 2, emoji: "😟", label: "À améliorer", color: "#EF6C00", bgColor: "bg-orange-500", stars: "⭐⭐" },
-    1: { score: 1, emoji: "😡", label: "Mauvais", color: "#C62828", bgColor: "bg-red-600", stars: "⭐" },
-    0: { score: 0, emoji: "❓", label: "Non évalué", color: "#757575", bgColor: "bg-gray-500", stars: "" },
+    2: { score: 2, emoji: "😟", label: "À améliorer", color: "#f59e0b", bgColor: "bg-orange-500", stars: "⭐⭐" },
+    1: { score: 1, emoji: "😡", label: "Mauvais", color: "#f43f5e", bgColor: "bg-red-600", stars: "⭐" },
+    0: { score: 0, emoji: "❓", label: "Non évalué", color: "#757575", bgColor: "bg-bg-muted0", stars: "" },
 };
 
 interface SmileyDisplayProps {
