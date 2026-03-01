@@ -207,12 +207,12 @@ export const populate = mutation({
             const etabs = await ctx.db.query("etablissements").take(25);
 
             const types = [
-                ...Array(8).fill({ t: "produits_perimes", l: "Produits périmés" }),
-                ...Array(6).fill({ t: "insalubrite", l: "Insalubrité" }),
-                ...Array(4).fill({ t: "absence_agrement", l: "Absence d'agrément" }),
-                ...Array(3).fill({ t: "produits_suspects", l: "Produits suspects / Contrefaçon" }),
-                ...Array(2).fill({ t: "chaine_froid", l: "Rupture chaîne du froid" }),
-                ...Array(2).fill({ t: "autre", l: "Autre infraction" }),
+                ...Array(8).fill({ t: "produits_perimes", l: "Produits périmés", c: "consommateur" }),
+                ...Array(6).fill({ t: "insalubrite", l: "Insalubrité", c: "consommateur" }),
+                ...Array(4).fill({ t: "absence_agrement", l: "Absence d'agrément", c: "consommateur" }),
+                ...Array(3).fill({ t: "produits_suspects", l: "Produits suspects / Contrefaçon", c: "consommateur" }),
+                ...Array(2).fill({ t: "chaine_froid", l: "Rupture chaîne du froid", c: "consommateur" }),
+                ...Array(2).fill({ t: "autre", l: "Autre infraction", c: "nutrivigilance" }),
             ];
 
             const statuses = [
@@ -240,6 +240,7 @@ export const populate = mutation({
                     ville: etab ? etab.ville : "Libreville",
                     etablissementId: etab ? etab._id : undefined,
                     nomEtablissement: etab ? etab.nom : "Inconnu",
+                    categorieSignalement: type.c as any,
                     typeInfraction: type.t as any,
                     typeInfractionLabel: type.l,
                     description: "Description de l'infraction constatée pour " + type.l,
