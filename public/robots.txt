@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://agasa-citoyen.web.app/sitemap.xml
